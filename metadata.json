@@ -1,0 +1,6 @@
+{
+  "name": "Fairytaleframes — Fine Art Photography & Cinematography Studio",
+  "description": "A luxury photography and cinematography studio website showcasing world-class wedding stories and editorial visual art.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
