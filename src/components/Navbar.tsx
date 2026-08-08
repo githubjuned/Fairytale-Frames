@@ -30,7 +30,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'WORKS', href: '#portfolio' },
     { name: 'SERVICES', href: '#services' },
     { name: 'ABOUT', href: '#about' },
-    { name: 'BLOG', href: '#stories' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

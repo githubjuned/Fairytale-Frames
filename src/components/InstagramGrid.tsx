@@ -3,18 +3,18 @@ import { motion } from 'motion/react';
 import { INSTAGRAM_POSTS } from '../data/mockData';
 import { Instagram, Heart, MessageCircle, ArrowUpRight } from 'lucide-react';
 
-const easeCurve = [0.16, 1, 0.3, 1] as [number, number, number, number];
+const cubicEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export const InstagramGrid: React.FC = () => {
   return (
-    <section className="py-24 bg-[#050505] text-white border-t border-[#D4AF37]/20">
+    <section className="py-20 sm:py-28 bg-[#050505] text-white border-t border-[#D4AF37]/20 select-none">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.75, ease: easeCurve }}
+          transition={{ duration: 0.8, ease: cubicEase }}
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10"
         >
           <div className="flex items-center gap-3">
@@ -47,27 +47,23 @@ export const InstagramGrid: React.FC = () => {
           </a>
         </motion.div>
 
-        {/* Live Feed Grid */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-            },
-          }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          {INSTAGRAM_POSTS.map((post) => (
+        {/* Live Feed Grid with Staggered Clip-Path Reveals */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          {INSTAGRAM_POSTS.map((post, idx) => (
             <motion.a
               key={post.id}
-              variants={{
-                hidden: { opacity: 0, y: 35, scale: 0.95 },
-                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: easeCurve } },
+              initial={{ 
+                opacity: 0, 
+                y: 30, 
+                clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' 
               }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0, 
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' 
+              }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.8, delay: idx * 0.09, ease: cubicEase }}
               href={post.permalink}
               target="_blank"
               rel="noreferrer"
@@ -76,10 +72,10 @@ export const InstagramGrid: React.FC = () => {
               <img
                 src={post.imageUrl}
                 alt={post.caption}
-                className="w-full h-full object-cover img-editorial filter brightness-90 group-hover:scale-105 transition-all duration-500"
+                className="w-full h-full object-cover img-editorial filter brightness-90 group-hover:scale-105 transition-all duration-500 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-between text-white text-xs">
+              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-between text-white text-xs">
                 <div className="flex items-center justify-end gap-3 text-white/90">
                   <span className="flex items-center gap-1 font-mono text-[#D4AF37]">
                     <Heart className="w-3.5 h-3.5 fill-current text-[#D4AF37]" />
@@ -97,9 +93,8 @@ export const InstagramGrid: React.FC = () => {
               </div>
             </motion.a>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
-

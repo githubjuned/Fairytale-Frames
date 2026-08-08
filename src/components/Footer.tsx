@@ -7,13 +7,22 @@ interface FooterProps {
   onOpenWhatsApp?: () => void;
 }
 
+const cubicEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
 export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
   return (
-    <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-12 border-t border-[#D4AF37]/20 font-sans">
+    <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-12 border-t border-[#D4AF37]/20 font-sans select-none overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        {/* HUGE IMPACT CTA BANNER */}
+        
+        {/* HUGE IMPACT CTA BANNER WITH LARGE TYPOGRAPHY REVEAL */}
         <div className="flex flex-row items-center justify-between gap-4 sm:gap-8 mb-20">
-          <div className="select-none space-y-1.5 sm:space-y-3">
+          <motion.div 
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.9, ease: cubicEase }}
+            className="space-y-1.5 sm:space-y-3"
+          >
             {/* Line 1: LET'S TALK */}
             <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-white leading-none">
               LET'S TALK
@@ -27,9 +36,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
             {/* Line 3: WORKING with enlarged animated 'O' */}
             <div className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-white leading-none flex items-center flex-nowrap">
               <span>W</span>
-              {/* Circular Emblem replacing 'O' with larger scale and pulsing animation */}
+              {/* Circular Emblem replacing 'O' */}
               <motion.div
-                animate={{ scale: [1, 1.18, 1] }}
+                animate={{ scale: [1, 1.15, 1] }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                 className="relative inline-flex items-center justify-center w-[1.2em] h-[1.2em] mx-[0.05em] shrink-0 align-middle"
               >
@@ -51,16 +60,22 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
               </motion.div>
               <span>RKING</span>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Gold Circle Arrow Button beside text block */}
-          <button
+          {/* Green / Golden Circle Arrow Button with Scale-In & Rotation Hover Interaction */}
+          <motion.button
+            initial={{ opacity: 0, scale: 0.75, rotate: -15 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.8, delay: 0.25, ease: cubicEase }}
+            whileHover={{ scale: 1.15, rotate: 12 }}
+            whileTap={{ scale: 0.95 }}
             onClick={onOpenInquiry}
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F4E0A5] to-[#AA771C] hover:from-[#F4E0A5] hover:to-[#D4AF37] text-black flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-[0_0_25px_rgba(212,175,55,0.4)] shrink-0 group"
+            className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-[#D4AF37] text-black flex items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)] shrink-0 group cursor-pointer"
             aria-label="Get in touch"
           >
-            <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+            <ArrowUpRight className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 stroke-[2.5] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </motion.button>
         </div>
 
         {/* Horizontal Divider Line */}
@@ -79,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
           <div className="space-y-1.5 md:text-center">
             <h5 className="font-semibold text-[#D4AF37] font-mono uppercase text-xs mb-2">Contact Us</h5>
             <p>
-              <a href="https://wa.me/917709434402" target="_blank" rel="noreferrer" className="underline hover:text-[#D4AF37] transition-colors">
+              <a href="https://wa.me/917709434402" target="_blank" rel="noreferrer" className="underline hover:text-[#25D366] transition-colors">
                 +91 77094 34402 (WhatsApp)
               </a>
             </p>
@@ -104,4 +119,3 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
     </footer>
   );
 };
-

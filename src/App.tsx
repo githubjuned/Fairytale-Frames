@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SplashScreen } from './components/SplashScreen';
+import { SmoothScrollWrapper } from './components/SmoothScrollWrapper';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { PortfolioCategories } from './components/PortfolioCategories';
@@ -53,94 +54,96 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070604] bg-golden-black-root text-white font-sans antialiased selection:bg-[#D4AF37] selection:text-black relative">
-      {/* Opening Fullscreen Animated Logo Splash Screen */}
-      {showSplash && (
-        <SplashScreen onComplete={() => setShowSplash(false)} />
-      )}
+    <SmoothScrollWrapper>
+      <div className="min-h-screen bg-[#070604] bg-golden-black-root text-white font-sans antialiased selection:bg-[#D4AF37] selection:text-black relative">
+        {/* Opening Fullscreen Animated Logo Splash Screen */}
+        {showSplash && (
+          <SplashScreen onComplete={() => setShowSplash(false)} />
+        )}
 
-      {/* Floating Glass Navbar */}
-      <Navbar
-        onOpenInquiry={() => setInquiryModalOpen(true)}
-        onOpenWhatsApp={handleDirectWhatsApp}
-        soundEnabled={soundEnabled}
-        setSoundEnabled={setSoundEnabled}
-      />
-
-      {/* Main Homepage Flow */}
-      <main>
-        {/* Fullscreen Cinematic Hero */}
-        <HeroSection
+        {/* Floating Glass Navbar */}
+        <Navbar
           onOpenInquiry={() => setInquiryModalOpen(true)}
-          onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
+          onOpenWhatsApp={handleDirectWhatsApp}
+          soundEnabled={soundEnabled}
+          setSoundEnabled={setSoundEnabled}
         />
 
-        {/* Services Section (Editing, Video, Photography) */}
-        <ServicesSection
+        {/* Main Homepage Flow */}
+        <main>
+          {/* Fullscreen Cinematic Hero */}
+          <HeroSection
+            onOpenInquiry={() => setInquiryModalOpen(true)}
+            onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
+          />
+
+          {/* Services Section (Editing, Video, Photography) */}
+          <ServicesSection
+            onOpenInquiry={() => setInquiryModalOpen(true)}
+          />
+
+          {/* Selected Works Portfolio Categories & Gallery */}
+          <PortfolioCategories
+            onSelectItem={(item) => setLightboxItem(item)}
+            onOpenInquiry={() => setInquiryModalOpen(true)}
+          />
+
+          {/* Best Captures Highlight Section */}
+          <BestCaptures
+            onSelectItem={(item) => setLightboxItem(item)}
+          />
+
+          {/* Before & After Color Grading Comparison */}
+          <ColorGradingSection />
+
+          {/* About the Studio & Equipment */}
+          <AboutStudio />
+
+          {/* Live Instagram Feed */}
+          <InstagramGrid />
+
+          {/* Commission Contact & Inquiry Form */}
+          <ContactSection
+            onOpenWhatsApp={handleDirectWhatsApp}
+          />
+        </main>
+
+        {/* Studio Footer */}
+        <Footer
           onOpenInquiry={() => setInquiryModalOpen(true)}
-        />
-
-        {/* Selected Works Portfolio Categories & Gallery */}
-        <PortfolioCategories
-          onSelectItem={(item) => setLightboxItem(item)}
-          onOpenInquiry={() => setInquiryModalOpen(true)}
-        />
-
-        {/* Best Captures Highlight Section */}
-        <BestCaptures
-          onSelectItem={(item) => setLightboxItem(item)}
-        />
-
-        {/* Before & After Color Grading Comparison */}
-        <ColorGradingSection />
-
-        {/* About the Studio & Equipment */}
-        <AboutStudio />
-
-        {/* Live Instagram Feed */}
-        <InstagramGrid />
-
-        {/* Commission Contact & Inquiry Form */}
-        <ContactSection
           onOpenWhatsApp={handleDirectWhatsApp}
         />
-      </main>
 
-      {/* Studio Footer */}
-      <Footer
-        onOpenInquiry={() => setInquiryModalOpen(true)}
-        onOpenWhatsApp={handleDirectWhatsApp}
-      />
+        {/* Floating WhatsApp Quick Concierge */}
+        <WhatsAppFloatingButton phoneNumber="917709434402" />
 
-      {/* Floating WhatsApp Quick Concierge */}
-      <WhatsAppFloatingButton phoneNumber="917709434402" />
+        {/* Interactive Modals */}
+        <ImageLightboxModal
+          item={lightboxItem}
+          onClose={() => setLightboxItem(null)}
+          onNext={handleLightboxNext}
+          onPrev={handleLightboxPrev}
+          onOpenInquiry={() => setInquiryModalOpen(true)}
+        />
 
-      {/* Interactive Modals */}
-      <ImageLightboxModal
-        item={lightboxItem}
-        onClose={() => setLightboxItem(null)}
-        onNext={handleLightboxNext}
-        onPrev={handleLightboxPrev}
-        onOpenInquiry={() => setInquiryModalOpen(true)}
-      />
+        <StoryModal
+          story={storyModalItem}
+          onClose={() => setStoryModalItem(null)}
+          onOpenInquiry={() => setInquiryModalOpen(true)}
+        />
 
-      <StoryModal
-        story={storyModalItem}
-        onClose={() => setStoryModalItem(null)}
-        onOpenInquiry={() => setInquiryModalOpen(true)}
-      />
+        <VideoModal
+          filmId={activeFilmId}
+          onClose={() => setActiveFilmId(null)}
+          onOpenInquiry={() => setInquiryModalOpen(true)}
+        />
 
-      <VideoModal
-        filmId={activeFilmId}
-        onClose={() => setActiveFilmId(null)}
-        onOpenInquiry={() => setInquiryModalOpen(true)}
-      />
-
-      <InquiryModal
-        isOpen={inquiryModalOpen}
-        onClose={() => setInquiryModalOpen(false)}
-      />
-    </div>
+        <InquiryModal
+          isOpen={inquiryModalOpen}
+          onClose={() => setInquiryModalOpen(false)}
+        />
+      </div>
+    </SmoothScrollWrapper>
   );
 }
 
