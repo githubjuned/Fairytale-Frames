@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { PortfolioCategories } from './components/PortfolioCategories';
@@ -19,6 +20,7 @@ import { PORTFOLIO_ITEMS } from './data/mockData';
 import { audioEngine } from './utils/audio';
 
 export function App() {
+  const [showSplash, setShowSplash] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [lightboxItem, setLightboxItem] = useState<PortfolioItem | null>(null);
   const [storyModalItem, setStoryModalItem] = useState<FeaturedStory | null>(null);
@@ -52,6 +54,11 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#070604] bg-golden-black-root text-white font-sans antialiased selection:bg-[#D4AF37] selection:text-black relative">
+      {/* Opening Fullscreen Animated Logo Splash Screen */}
+      {showSplash && (
+        <SplashScreen onComplete={() => setShowSplash(false)} />
+      )}
+
       {/* Floating Glass Navbar */}
       <Navbar
         onOpenInquiry={() => setInquiryModalOpen(true)}
