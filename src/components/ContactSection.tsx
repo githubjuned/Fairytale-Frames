@@ -22,19 +22,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    const whatsappMessage = `*New Inquiry - Fairy Tale Frames Studio*\n\n` +
+      `*Name:* ${formData.name}\n` +
+      `*Email:* ${formData.email}\n` +
+      `*Phone:* ${formData.phone || 'Not provided'}\n` +
+      `*Message:* ${formData.message}`;
+
+    const encodedText = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/917709434402?text=${encodedText}`;
+
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 1000);
+      window.open(whatsappUrl, '_blank');
+    }, 500);
   };
 
   const socialLinks = [
-    { name: 'Behance', url: '#' },
+    { name: 'Instagram', url: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm' },
     { name: 'Facebook', url: '#' },
-    { name: 'Dribbble', url: '#' },
-    { name: 'LinkedIn', url: '#' },
-    { name: 'Instagram', url: '#' },
-    { name: 'Twitter', url: '#' },
+    { name: 'YouTube', url: '#' },
   ];
 
   return (
@@ -72,7 +80,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
               <div>
                 <span className="text-xs text-white/50 font-sans block mb-2">Based In</span>
                 <p className="text-2xl sm:text-3xl font-cormorant italic font-normal text-white">
-                  New York, USA
+                  Nashik, India
                 </p>
               </div>
 
@@ -96,21 +104,39 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
             <div className="lg:col-span-7">
               {submitted ? (
                 <div className="text-center py-12 space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-white/10 text-white mx-auto flex items-center justify-center border border-white/30 shadow-lg">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center border border-emerald-500/40 shadow-lg animate-pulse">
                     <CheckCircle className="w-7 h-7" />
                   </div>
                   <h4 className="text-2xl font-montserrat font-bold uppercase text-white">
-                    MESSAGE SENT
+                    REDIRECTING TO WHATSAPP
                   </h4>
                   <p className="text-xs text-white/70 max-w-md mx-auto leading-relaxed">
-                    Thank you, {formData.name || 'Friend'}. We have received your inquiry and will respond promptly.
+                    Thank you, {formData.name || 'Friend'}. Your form details have been compiled and sent to WhatsApp.
                   </p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="mt-4 px-6 py-2 border border-white/50 text-xs font-cormorant italic text-white hover:bg-white hover:text-black transition-colors"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    <button
+                      onClick={() => {
+                        const whatsappMessage = `*New Inquiry - Fairy Tale Frames Studio*\n\n` +
+                          `*Name:* ${formData.name}\n` +
+                          `*Email:* ${formData.email}\n` +
+                          `*Phone:* ${formData.phone || 'Not provided'}\n` +
+                          `*Message:* ${formData.message}`;
+                        window.open(`https://wa.me/917709434402?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+                      }}
+                      className="px-6 py-2 bg-[#25D366] text-black font-sans font-bold text-xs uppercase tracking-wider rounded-full hover:bg-[#20bd5a] transition-colors"
+                    >
+                      Open WhatsApp Again
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({ name: '', email: '', phone: '', message: '' });
+                      }}
+                      className="px-6 py-2 border border-white/50 text-xs font-cormorant italic text-white hover:bg-white hover:text-black transition-colors"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">

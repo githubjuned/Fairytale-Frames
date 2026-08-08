@@ -26,9 +26,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenInquiry 
   ];
 
   return (
-    <section id="services" className="pt-2 sm:pt-8 pb-12 md:py-28 bg-black text-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-10 items-start">
+    <section id="services" className="py-8 sm:py-16 md:py-28 bg-black text-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 items-start">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -37,17 +37,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenInquiry 
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, delay: index * 0.18, ease: [0.16, 1, 0.3, 1] }}
               onClick={onOpenInquiry}
-              className="group cursor-pointer relative flex flex-col pt-8 sm:pt-14"
+              className="group cursor-pointer relative flex flex-col pt-5 sm:pt-14 max-w-[260px] sm:max-w-none mx-auto w-full"
             >
               {/* Overlapping Floating Title at top center */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-full text-center px-2">
-                <h3 className="font-cormorant italic font-normal text-5xl sm:text-6xl md:text-6xl lg:text-7xl text-white tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500">
+                <h3 className="font-cormorant italic font-normal text-4xl sm:text-6xl md:text-6xl lg:text-7xl text-white tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500">
                   {service.title}
                 </h3>
               </div>
 
               {/* Card Image Frame */}
-              <div className="relative w-full aspect-square overflow-hidden bg-neutral-900 border border-white/10 shadow-2xl">
+              <div className="relative w-full aspect-square overflow-hidden bg-neutral-900 border border-white/10 shadow-2xl rounded-sm">
                 <img
                   src={service.imageUrl}
                   alt={service.title}
@@ -57,13 +57,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenInquiry 
               </div>
 
               {/* Bottom Footer: Know More + Golden Arrow */}
-              <div className="mt-5 flex items-center justify-between px-1">
-                <span className="font-cormorant italic font-normal text-xl sm:text-2xl text-white tracking-wide group-hover:text-[#F4E0A5] transition-colors">
+              <div className="mt-3 sm:mt-5 flex items-center justify-between px-1">
+                <span className="font-cormorant italic font-normal text-lg sm:text-2xl text-white tracking-wide group-hover:text-[#F4E0A5] transition-colors">
                   Know More
                 </span>
 
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#D4AF37] text-black flex items-center justify-center transition-all duration-300 group-hover:bg-[#F4E0A5] group-hover:scale-110 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5] group-hover:translate-x-0.5 transition-transform" />
+                <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#D4AF37] text-black flex items-center justify-center transition-all duration-300 group-hover:bg-[#F4E0A5] group-hover:scale-110 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                  <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2.5] group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
             </motion.div>

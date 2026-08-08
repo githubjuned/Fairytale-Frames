@@ -21,19 +21,27 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({ isOpen, onClose }) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    const whatsappMessage = `*New Inquiry - Fairy Tale Frames Studio*\n\n` +
+      `*Name:* ${formData.name}\n` +
+      `*Email:* ${formData.email}\n` +
+      `*Phone:* ${formData.phone || 'Not provided'}\n` +
+      `*Message:* ${formData.message}`;
+
+    const encodedText = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/917709434402?text=${encodedText}`;
+
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 1000);
+      window.open(whatsappUrl, '_blank');
+    }, 500);
   };
 
   const socialLinks = [
-    { name: 'Behance', url: '#' },
+    { name: 'Instagram', url: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm' },
     { name: 'Facebook', url: '#' },
-    { name: 'Dribbble', url: '#' },
-    { name: 'LinkedIn', url: '#' },
-    { name: 'Instagram', url: '#' },
-    { name: 'Twitter', url: '#' },
+    { name: 'YouTube', url: '#' },
   ];
 
   return (
@@ -67,7 +75,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({ isOpen, onClose }) =
             <div>
               <span className="text-xs text-white/50 font-sans block mb-1">Based In</span>
               <p className="text-2xl sm:text-3xl font-cormorant italic font-normal text-white">
-                New York, USA
+                Nashik, India
               </p>
             </div>
 
@@ -91,21 +99,36 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({ isOpen, onClose }) =
           <div className="lg:col-span-7">
             {submitted ? (
               <div className="text-center py-10 space-y-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 text-white mx-auto flex items-center justify-center border border-white/30">
+                <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center border border-emerald-500/40 animate-pulse">
                   <CheckCircle className="w-6 h-6" />
                 </div>
                 <h4 className="text-xl font-montserrat font-bold uppercase text-white">
-                  MESSAGE TRANSMITTED
+                  REDIRECTING TO WHATSAPP
                 </h4>
                 <p className="text-xs text-white/70 max-w-sm mx-auto leading-relaxed">
-                  Thank you, {formData.name || 'Friend'}. We have received your request and will contact you shortly.
+                  Thank you, {formData.name || 'Friend'}. Your details have been formatted and sent directly to WhatsApp.
                 </p>
-                <button
-                  onClick={onClose}
-                  className="mt-4 px-6 py-2 border border-white/50 text-xs font-cormorant italic text-white hover:bg-white hover:text-black transition-colors"
-                >
-                  Close Window
-                </button>
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                  <button
+                    onClick={() => {
+                      const whatsappMessage = `*New Inquiry - Fairy Tale Frames Studio*\n\n` +
+                        `*Name:* ${formData.name}\n` +
+                        `*Email:* ${formData.email}\n` +
+                        `*Phone:* ${formData.phone || 'Not provided'}\n` +
+                        `*Message:* ${formData.message}`;
+                      window.open(`https://wa.me/917709434402?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+                    }}
+                    className="px-5 py-2 bg-[#25D366] text-black font-sans font-bold text-xs uppercase tracking-wider rounded-full hover:bg-[#20bd5a] transition-colors"
+                  >
+                    Open WhatsApp Again
+                  </button>
+                  <button
+                    onClick={onClose}
+                    className="px-5 py-2 border border-white/50 text-xs font-cormorant italic text-white hover:bg-white hover:text-black transition-colors"
+                  >
+                    Close Window
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">

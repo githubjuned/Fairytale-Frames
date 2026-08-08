@@ -26,18 +26,18 @@ export const InstagramGrid: React.FC = () => {
                 JOURNAL ON INSTAGRAM
               </span>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm"
                 target="_blank"
                 rel="noreferrer"
                 className="font-syne font-bold text-2xl text-white hover:text-[#D4AF37] transition-colors"
               >
-                @maisonlumiere.official
+                @fairytale_frames._
               </a>
             </div>
           </div>
 
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#D4AF37]/30 text-xs font-bold uppercase tracking-widest text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)]"

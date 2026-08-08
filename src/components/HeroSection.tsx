@@ -148,60 +148,33 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
       >
         <div className="relative w-[114%] -ml-[7%] flex flex-col justify-center items-center min-h-[90px] sm:min-h-[120px]">
           
-          {/* Top Bent Ribbon 1 (Angled Left to Right - -rotate-3 skew-x-2) */}
-          <div className="absolute w-full py-3 sm:py-4 bg-gradient-to-r from-[#0D0B08] via-black to-[#0D0B08] border-y border-[#D4AF37]/40 shadow-[0_10px_30px_rgba(0,0,0,0.9)] -rotate-3 -skew-x-3 scale-105 z-10 backdrop-blur-sm">
+          {/* Bent Ribbon Marquee */}
+          <div className="relative w-full py-3 sm:py-4 bg-black border-y border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.9)] -rotate-1 -skew-x-2 scale-105 z-10 backdrop-blur-sm">
             <div className="animate-marquee-fast whitespace-nowrap flex items-center gap-6 sm:gap-10 text-sm sm:text-lg md:text-2xl font-montserrat font-black tracking-[0.2em] text-white uppercase">
               <div className="flex items-center gap-6 sm:gap-10">
-                <span className="text-[#D4AF37]">✦ FROM MOMENTS TO MEMORIES</span>
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span>✦ FROM MOMENTS TO MEMORIES</span>
+                <span className="w-2 h-2 rounded-full bg-white" />
                 <span>PHOTOGRAPHY THAT TELLS STORIES</span>
                 <span className="w-2 h-2 rounded-full bg-white" />
-                <span className="text-[#F4E0A5]">YOUR STORY, OUR ART</span>
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span>YOUR STORY, OUR ART</span>
+                <span className="w-2 h-2 rounded-full bg-white" />
                 <span>4K CINEMATIC MOTION</span>
                 <span className="w-2 h-2 rounded-full bg-white" />
-                <span className="text-[#D4AF37]">WORLDWIDE COMMISSIONS</span>
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span>WORLDWIDE COMMISSIONS</span>
+                <span className="w-2 h-2 rounded-full bg-white" />
               </div>
 
               <div className="flex items-center gap-6 sm:gap-10">
-                <span className="text-[#D4AF37]">✦ FROM MOMENTS TO MEMORIES</span>
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span>✦ FROM MOMENTS TO MEMORIES</span>
+                <span className="w-2 h-2 rounded-full bg-white" />
                 <span>PHOTOGRAPHY THAT TELLS STORIES</span>
                 <span className="w-2 h-2 rounded-full bg-white" />
-                <span className="text-[#F4E0A5]">YOUR STORY, OUR ART</span>
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span>YOUR STORY, OUR ART</span>
+                <span className="w-2 h-2 rounded-full bg-white" />
                 <span>4K CINEMATIC MOTION</span>
                 <span className="w-2 h-2 rounded-full bg-white" />
-                <span className="text-[#D4AF37]">WORLDWIDE COMMISSIONS</span>
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-              </div>
-            </div>
-          </div>
-
-          {/* Intersecting Crossed / Bent Ribbon 2 (Angled Right to Left - rotate-3 skew-x-3) */}
-          <div className="relative w-full py-2.5 sm:py-3.5 bg-gradient-to-r from-[#D4AF37] via-[#F4E0A5] to-[#AA771C] text-black shadow-[0_15px_35px_rgba(0,0,0,0.9)] rotate-3 skew-x-3 scale-105 z-20 mix-blend-screen opacity-95">
-            <div className="animate-marquee whitespace-nowrap flex items-center gap-6 sm:gap-10 text-xs sm:text-base md:text-xl font-montserrat font-black tracking-[0.22em] text-black uppercase">
-              <div className="flex items-center gap-6 sm:gap-10">
-                <span>✦ FAIRY TALE FRAMES STUDIO</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-                <span>PREMIUM CINEMATOGRAPHY</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-                <span>EDITORIAL WEDDINGS & EVENTS</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-                <span>BOOK YOUR DATES 2026</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-              </div>
-
-              <div className="flex items-center gap-6 sm:gap-10">
-                <span>✦ FAIRY TALE FRAMES STUDIO</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-                <span>PREMIUM CINEMATOGRAPHY</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-                <span>EDITORIAL WEDDINGS & EVENTS</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
-                <span>BOOK YOUR DATES 2026</span>
-                <span className="w-2 h-2 rounded-full bg-black" />
+                <span>WORLDWIDE COMMISSIONS</span>
+                <span className="w-2 h-2 rounded-full bg-white" />
               </div>
             </div>
           </div>

@@ -299,35 +299,35 @@ export const TESTIMONIALS: Testimonial[] = [
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     id: 'ig-1',
-    imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600',
-    caption: 'Golden light cascading over Villa Balbiano. Medium format Kodak Portra 400. #MaisonLumiere #LakeComoWedding',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003392/compressed-DSC03837_k6nnoz.jpg',
+    caption: 'Capturing real emotions and timeless wedding stories. #FairytaleFrames #NashikWeddings #IndianWeddingPhotographer',
     likes: 4820,
     comments: 184,
-    permalink: 'https://instagram.com'
+    permalink: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm'
   },
   {
     id: 'ig-2',
-    imageUrl: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=600',
-    caption: 'The art of black & white portraiture. Captured on Leica M11 in Ravello. #VogueWeddings #MonochromeFineArt',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003577/compressed-DSC04451_geuvgj.jpg',
+    caption: 'Unscripted joy and cinematic candid moments. #FairytaleFrames #WeddingCinematography #EditorialWeddings',
     likes: 6190,
     comments: 245,
-    permalink: 'https://instagram.com'
+    permalink: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm'
   },
   {
     id: 'ig-3',
-    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600',
-    caption: 'Winter vows in Parisian romance. Silk gown custom fitted by Dior. #ParisWedding #EditorialBrides',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003742/compressed-KRN05243_ooroc9.jpg',
+    caption: 'Frames that feel like a fairytale dream. #FairytaleFrames #DestinationWeddings #BrideAndGroom',
     likes: 5410,
     comments: 198,
-    permalink: 'https://instagram.com'
+    permalink: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm'
   },
   {
     id: 'ig-4',
-    imageUrl: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600',
-    caption: 'Alpine silence in St. Moritz. A love story written in the snow. #DestinationWeddings #LuxuryStudio',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003879/compressed-jsjsj_iusoys.jpg',
+    caption: 'Elegance in every frame & tradition reimagined. #FairytaleFrames #PreWeddingFilms #LuxuryWeddings',
     likes: 7230,
     comments: 312,
-    permalink: 'https://instagram.com'
+    permalink: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm'
   }
 ];
 

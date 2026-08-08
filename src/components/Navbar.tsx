@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Volume2, VolumeX, Menu, X, ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { Menu, X, ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 interface NavbarProps {
   onOpenInquiry: () => void;
@@ -76,20 +76,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right CTA Area & Mobile Trigger */}
         <div className="flex items-center gap-3">
-          {/* Sound Toggle (Visible on Desktop and Mobile) */}
-          <button
-            onClick={() => setSoundEnabled((prev) => !prev)}
-            title={soundEnabled ? 'Disable Ambient Audio' : 'Enable Ambient Audio'}
-            className="p-2.5 rounded-full border border-white/20 text-white/80 hover:text-white hover:border-[#D4AF37] bg-black/40 backdrop-blur-md transition-all active:scale-95"
-            aria-label="Toggle Sound"
-          >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-[#F4E0A5] animate-pulse" />
-            ) : (
-              <VolumeX className="w-4 h-4 text-white/60" />
-            )}
-          </button>
-
           {/* Desktop Hire Me Button */}
           <motion.button
             onClick={onOpenInquiry}
