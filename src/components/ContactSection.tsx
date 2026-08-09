@@ -39,10 +39,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
     }, 500);
   };
 
+  const autoInquiryText = encodeURIComponent('Hello! I would like to inquire about your photography and videography services.');
+
   const socialLinks = [
     { name: 'Instagram', url: 'https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm' },
-    { name: 'Facebook', url: '#' },
-    { name: 'YouTube', url: '#' },
+    { name: 'WhatsApp', url: `https://wa.me/917709434402?text=${autoInquiryText}` },
+    { name: 'YouTube', url: 'https://www.youtube.com/@kiranhirephotography4654' },
   ];
 
   return (
@@ -91,6 +93,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                     <a
                       key={soc.name}
                       href={soc.url}
+                      target="_blank"
+                      rel="noreferrer"
                       className="py-2 px-3 sm:px-4 rounded-none border border-white/30 text-center text-xs sm:text-sm font-cormorant italic text-white hover:bg-white hover:text-black hover:border-white transition-all duration-200"
                     >
                       {soc.name}

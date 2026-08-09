@@ -5,6 +5,7 @@ export interface PortfolioItem {
   location: string;
   year: string;
   imageUrl: string;
+  videoUrl?: string;
   galleryImages?: string[];
   aspectRatio?: 'tall' | 'wide' | 'square' | 'portrait';
   cameraSpecs?: string;

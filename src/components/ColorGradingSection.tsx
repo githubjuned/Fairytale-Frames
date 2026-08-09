@@ -76,25 +76,25 @@ export const ColorGradingSection: React.FC = () => {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="relative w-full h-[380px] sm:h-[540px] md:h-[620px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-neutral-950 cursor-ew-resize touch-none group"
+            className="relative w-full h-[380px] sm:h-[540px] md:h-[620px] overflow-hidden bg-black cursor-ew-resize touch-none group"
           >
             {/* 1. AFTER Image (Full background layer) */}
             <img
               src={afterImg}
               alt="After Color Grade"
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-[1.02]"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               draggable={false}
             />
 
             {/* 2. BEFORE Image (Clipped top layer) */}
             <div
-              className="absolute top-0 bottom-0 left-0 overflow-hidden pointer-events-none border-r border-white/20"
+              className="absolute top-0 bottom-0 left-0 overflow-hidden pointer-events-none"
               style={{ width: `${sliderPos}%` }}
             >
               <img
                 src={beforeImg}
                 alt="Before Original RAW"
-                className="absolute top-0 left-0 h-full w-full max-w-none object-cover pointer-events-none filter brightness-95"
+                className="absolute top-0 left-0 h-full w-full max-w-none object-cover pointer-events-none"
                 style={{ width: containerRef.current?.clientWidth || '100%' }}
                 draggable={false}
               />

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Play } from 'lucide-react';
 import { PORTFOLIO_ITEMS } from '../data/mockData';
 import { PortfolioItem } from '../types';
 
@@ -28,11 +29,11 @@ export const ProjectProgress: React.FC<{
   onNext: () => void;
   onSelectIndex: (index: number) => void;
 }> = ({ currentIndex, totalProjects, onPrev, onNext, onSelectIndex }) => (
-  <div className="absolute left-2 sm:left-6 md:left-14 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-between w-9 sm:w-11 h-36 sm:h-44 py-2.5 sm:py-3.5 px-1.5 sm:px-2 bg-black/85 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl">
+  <div className="absolute left-1.5 sm:left-6 md:left-14 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-between w-8 sm:w-11 h-32 sm:h-44 py-2 sm:py-3.5 px-1 sm:px-2 bg-black/85 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl">
     <button
       onClick={onPrev}
       disabled={currentIndex === 0}
-      className={`text-[10px] sm:text-[11px] font-mono font-bold tracking-wider transition-colors cursor-pointer ${
+      className={`text-[9px] sm:text-[11px] font-mono font-bold tracking-wider transition-colors cursor-pointer ${
         currentIndex === 0 ? 'text-white/20 cursor-not-allowed' : 'text-white hover:text-[#D4AF37]'
       }`}
       title="Previous Project"
@@ -41,7 +42,7 @@ export const ProjectProgress: React.FC<{
     </button>
 
     {/* Vertical Indicator Line with Clickable Dots */}
-    <div className="w-[2px] h-16 sm:h-20 bg-white/20 relative rounded-full flex flex-col items-center justify-between py-1 my-1">
+    <div className="w-[2px] h-12 sm:h-20 bg-white/20 relative rounded-full flex flex-col items-center justify-between py-1 my-1">
       {Array.from({ length: totalProjects }).map((_, idx) => (
         <button
           key={idx}
@@ -59,7 +60,7 @@ export const ProjectProgress: React.FC<{
     <button
       onClick={onNext}
       disabled={currentIndex === totalProjects - 1}
-      className={`text-[10px] sm:text-[11px] font-mono font-bold tracking-wider transition-colors cursor-pointer ${
+      className={`text-[9px] sm:text-[11px] font-mono font-bold tracking-wider transition-colors cursor-pointer ${
         currentIndex === totalProjects - 1 ? 'text-white/20 cursor-not-allowed' : 'text-white/60 hover:text-[#D4AF37]'
       }`}
       title="Next Project"
@@ -71,26 +72,19 @@ export const ProjectProgress: React.FC<{
 
 // Sub-component 3: Project Title
 export const ProjectTitle: React.FC<{ title: string }> = ({ title }) => (
-  <div className="relative z-20 px-4 sm:px-6 select-none text-center pointer-events-none flex flex-col items-center">
+  <div className="relative z-20 px-3 sm:px-6 select-none text-center pointer-events-none flex flex-col items-center">
     <h2 className="heading-h3 text-white tracking-wider drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] group-hover:text-[#F4E0A5] group-active:text-[#F4E0A5] transition-colors">
       {title}
     </h2>
-    <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-[#D4AF37]/50 text-[#F4E0A5] text-[10px] sm:text-xs font-mono font-medium tracking-wider uppercase shadow-md group-active:bg-[#D4AF37] group-active:text-black transition-all">
-      <span>Tap to View</span>
-    </div>
   </div>
 );
 
-// Sub-component 4: Project Index Tag
-export const ProjectIndex: React.FC<{ index: number; total: number }> = ({ index, total }) => (
-  <div className="absolute top-3 left-3 sm:top-4 sm:left-5 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-[#D4AF37] uppercase">
-    {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-  </div>
-);
+// Sub-component 4: Project Index Tag (Optional / Unused)
+export const ProjectIndex: React.FC<{ index: number; total: number }> = () => null;
 
 // Sub-component 5: Project Overlay
 export const ProjectOverlay: React.FC = () => (
-  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/30 group-hover:via-black/10 group-active:via-black/10 transition-colors duration-500 pointer-events-none" />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:via-transparent transition-colors duration-500 pointer-events-none" />
 );
 
 // Sub-component 6: Project Image
@@ -102,7 +96,7 @@ export const ProjectImage = React.forwardRef<
     ref={ref}
     src={src}
     alt={alt}
-    className="absolute inset-0 w-full h-full object-cover filter brightness-[0.9] group-hover:scale-105 group-active:scale-105 transition-transform duration-500 ease-out will-change-transform"
+    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 group-active:scale-105 transition-transform duration-500 ease-out will-change-transform"
   />
 ));
 ProjectImage.displayName = 'ProjectImage';
@@ -122,11 +116,17 @@ export const ProjectCard = React.forwardRef<
   <div
     ref={ref}
     onClick={onClick}
-    className="project-card cursor-pointer absolute inset-0 w-full h-full rounded-[20px] sm:rounded-[28px] overflow-hidden bg-black flex items-center justify-center border border-white/15 group shadow-[0_25px_70px_rgba(0,0,0,0.95)] will-change-transform select-none touch-manipulation active:scale-[0.98] transition-transform duration-200"
+    className="project-card cursor-pointer absolute inset-0 w-full h-full overflow-hidden bg-black flex items-center justify-center group will-change-transform select-none touch-manipulation active:scale-[0.98] transition-transform duration-200"
   >
     <ProjectImage ref={imageRef} src={item.imageUrl} alt={item.title} />
     <ProjectOverlay />
     <ProjectIndex index={index} total={total} />
+    {item.videoUrl && (
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[#D4AF37] text-xs font-mono font-bold border border-[#D4AF37]/40 shadow-xl">
+        <Play className="w-3.5 h-3.5 fill-current text-[#D4AF37]" />
+        <span className="tracking-wider">4K FILM REEL</span>
+      </div>
+    )}
     <div ref={titleRef} className="will-change-transform">
       <ProjectTitle title={item.title} />
     </div>
@@ -135,15 +135,23 @@ export const ProjectCard = React.forwardRef<
 ProjectCard.displayName = 'ProjectCard';
 
 // Sub-component 8: Project Stack
-export const ProjectStack: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="relative z-10 w-[84vw] sm:w-[80vw] max-w-[660px] aspect-[4/3] sm:aspect-[16/10] overflow-hidden ml-6 sm:ml-0">
+export const ProjectStack: React.FC<{
+  children: React.ReactNode;
+  onTouchStart?: React.TouchEventHandler;
+  onTouchEnd?: React.TouchEventHandler;
+}> = ({ children, onTouchStart, onTouchEnd }) => (
+  <div
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
+    className="relative z-10 w-[78vw] sm:w-[80vw] max-w-[660px] aspect-[4/5] sm:aspect-[16/10] overflow-hidden ml-8 sm:ml-0 rounded-xl sm:rounded-none shadow-2xl"
+  >
     {children}
   </div>
 );
 
 // Main Component / Section Container: WorkSection
 export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }) => {
-  const featuredWorks = PORTFOLIO_ITEMS.slice(0, 5);
+  const featuredWorks = PORTFOLIO_ITEMS;
   const [activeIndex, setActiveIndex] = useState(0);
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -151,6 +159,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
   const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
   const titlesRef = useRef<(HTMLDivElement | null)[]>([]);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -167,23 +176,28 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
 
     if (cards.length === 0) return;
 
-    // Ensure ScrollTrigger refreshes properly
-    ScrollTrigger.refresh();
+    // Prevent mobile URL bar resize triggers from destroying GSAP ScrollTrigger pins
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    const isMobile = window.innerWidth < 640;
+    const distancePerCard = isMobile ? window.innerHeight * 0.85 : window.innerHeight * 1.1;
 
     // Create GSAP Timeline with ScrollTrigger scrub
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: () => `+=${total * 130}vh`,
+        end: () => `+=${total * distancePerCard}`,
         pin: true,
         pinSpacing: true,
-        scrub: 0.7,
+        anticipatePin: 1,
+        scrub: isMobile ? 0.3 : 0.6,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           const prog = self.progress;
           const idx = Math.min(
             total - 1,
-            Math.max(0, Math.floor(prog * total))
+            Math.max(0, Math.floor(prog * total + 0.02))
           );
           setActiveIndex(idx);
         },
@@ -197,7 +211,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       if (i === 0) {
         gsap.set(card, { yPercent: 0, scale: 1, autoAlpha: 1, zIndex: 20 });
         if (images[i]) {
-          gsap.set(images[i], { clipPath: 'inset(0% round 24px)', yPercent: 0 });
+          gsap.set(images[i], { clipPath: 'inset(0%)', yPercent: 0 });
         }
         if (titles[i]) {
           gsap.set(titles[i], { opacity: 1, scale: 1, y: 0 });
@@ -205,7 +219,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       } else {
         gsap.set(card, { yPercent: 100, scale: 0.92, autoAlpha: 0, zIndex: 10 + i });
         if (images[i]) {
-          gsap.set(images[i], { clipPath: 'inset(10% round 24px)', yPercent: 15 });
+          gsap.set(images[i], { clipPath: 'inset(10%)', yPercent: 15 });
         }
         if (titles[i]) {
           gsap.set(titles[i], { opacity: 0, scale: 0.9, y: 20 });
@@ -242,7 +256,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
           currentImg,
           {
             yPercent: -15,
-            clipPath: 'inset(10% round 24px)',
+            clipPath: 'inset(10%)',
             duration: 1,
             ease: 'power2.inOut',
           },
@@ -282,7 +296,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
           nextImg,
           {
             yPercent: 0,
-            clipPath: 'inset(0% round 24px)',
+            clipPath: 'inset(0%)',
             duration: 1,
             ease: 'power2.inOut',
           },
@@ -306,13 +320,15 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       }
     }
 
+    ScrollTrigger.refresh();
+
     return () => {
       tl.scrollTrigger?.kill();
       tl.kill();
     };
   }, [featuredWorks.length]);
 
-  // Jump to specific project index when index button is clicked
+  // Jump to specific project index when index button is clicked or swiped
   const handleSelectIndex = (targetIndex: number) => {
     if (!timelineRef.current || !timelineRef.current.scrollTrigger) return;
     const st = timelineRef.current.scrollTrigger;
@@ -340,6 +356,26 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
     }
   };
 
+  // Touch gesture handler for swiping up/down on cards on mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffY = touchStartY.current - touchEndY;
+    touchStartY.current = null;
+
+    if (Math.abs(diffY) > 40) {
+      if (diffY > 0 && activeIndex < featuredWorks.length - 1) {
+        handleSelectIndex(activeIndex + 1);
+      } else if (diffY < 0 && activeIndex > 0) {
+        handleSelectIndex(activeIndex - 1);
+      }
+    }
+  };
+
   return (
     <section 
       id="portfolio" 
@@ -347,7 +383,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       className="bg-black text-white relative select-none"
     >
       {/* Sticky Viewport Container */}
-      <div className="h-screen w-full sticky top-0 flex items-center justify-center overflow-hidden bg-black px-4">
+      <div className="h-screen w-full sticky top-0 flex items-center justify-center overflow-hidden bg-black px-2 sm:px-4">
         
         {/* Background Typography "WORK" */}
         <WorkBackgroundTitle text="WORK" />
@@ -362,7 +398,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
         />
 
         {/* Centered Stack of Overlapping Project Cards */}
-        <ProjectStack>
+        <ProjectStack onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
           {featuredWorks.map((item, index) => (
             <ProjectCard
               key={item.id}

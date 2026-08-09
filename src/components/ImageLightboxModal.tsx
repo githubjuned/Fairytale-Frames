@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PortfolioItem } from '../types';
-import { X, ChevronLeft, ChevronRight, ArrowUpRight, Grid, Image as ImageIcon, Layers } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ArrowUpRight, Grid, Image as ImageIcon, Layers, Play } from 'lucide-react';
 
 interface ImageLightboxModalProps {
   item: PortfolioItem | null;
@@ -32,6 +32,14 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
     : (item ? [item.imageUrl] : []);
 
   const currentPhotoUrl = galleryList[selectedImgIdx] || item?.imageUrl || '';
+
+  const isVideoUrl = (url?: string) => {
+    if (!url) return false;
+    return url.includes('.mp4') || url.includes('/video/upload/') || url.includes('.webm') || url.includes('.mov');
+  };
+
+  const isCurrentVideo = (selectedImgIdx === 0 && item?.videoUrl) || isVideoUrl(currentPhotoUrl);
+  const activeVideoSrc = (selectedImgIdx === 0 && item?.videoUrl) ? item.videoUrl : currentPhotoUrl;
 
   const handleNextPhoto = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -105,16 +113,29 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
           {viewMode === 'single' ? (
             <div className="relative flex-1 flex items-center justify-center p-2 sm:p-6 overflow-hidden">
               <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentPhotoUrl}
-                  src={currentPhotoUrl}
-                  alt={`${item.title} photo ${selectedImgIdx + 1}`}
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="max-w-full max-h-[62vh] sm:max-h-[68vh] object-contain rounded-xl sm:rounded-2xl shadow-2xl"
-                />
+                {isCurrentVideo ? (
+                  <motion.video
+                    key={activeVideoSrc}
+                    src={activeVideoSrc}
+                    poster={item.imageUrl}
+                    controls
+                    autoPlay
+                    loop
+                    playsInline
+                    className="max-w-full max-h-[62vh] sm:max-h-[68vh] object-contain shadow-2xl rounded-lg"
+                  />
+                ) : (
+                  <motion.img
+                    key={currentPhotoUrl}
+                    src={currentPhotoUrl}
+                    alt={`${item.title} photo ${selectedImgIdx + 1}`}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.02 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-full max-h-[62vh] sm:max-h-[68vh] object-contain shadow-2xl"
+                  />
+                )}
               </AnimatePresence>
 
               {/* Prev / Next Image Navigation overlay buttons */}
@@ -151,31 +172,46 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
-                {galleryList.map((imgUrl, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.03, y: -2 }}
-                    onClick={() => {
-                      setSelectedImgIdx(index);
-                      setViewMode('single');
-                    }}
-                    className={`group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border transition-all ${
-                      selectedImgIdx === index
-                        ? 'border-[#D4AF37] ring-2 ring-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)]'
-                        : 'border-white/10 hover:border-white/40'
-                    }`}
-                  >
-                    <img
-                      src={imgUrl}
-                      alt={`Gallery thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
-                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono text-white font-bold">
-                      #{index + 1}
-                    </div>
-                  </motion.div>
-                ))}
+                {galleryList.map((imgUrl, index) => {
+                  const isVid = (index === 0 && Boolean(item.videoUrl)) || isVideoUrl(imgUrl);
+                  return (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.03, y: -2 }}
+                      onClick={() => {
+                        setSelectedImgIdx(index);
+                        setViewMode('single');
+                      }}
+                      className={`group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all ${
+                        selectedImgIdx === index
+                          ? 'ring-2 ring-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)]'
+                          : 'hover:opacity-90'
+                      }`}
+                    >
+                      {isVideoUrl(imgUrl) ? (
+                        <video
+                          src={imgUrl}
+                          muted
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <img
+                          src={imgUrl}
+                          alt={`Gallery thumbnail ${index + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
+                      {isVid && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
+                          <Play className="w-6 h-6 text-white drop-shadow-md fill-white/80" />
+                        </div>
+                      )}
+                      <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[10px] font-mono text-white font-bold">
+                        #{index + 1}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -184,19 +220,31 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
           {galleryList.length > 1 && viewMode === 'single' && (
             <div className="p-3 bg-[#0d0c0e] border-t border-white/10 flex items-center gap-3 overflow-x-auto custom-scrollbar select-none">
               <div className="flex items-center gap-2.5">
-                {galleryList.map((imgUrl, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setSelectedImgIdx(idx)}
-                    className={`relative w-14 h-10 sm:w-16 sm:h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 cursor-pointer ${
-                      selectedImgIdx === idx
-                        ? 'border-[#D4AF37] scale-105 shadow-[0_0_12px_rgba(212,175,55,0.5)]'
-                        : 'border-white/20 opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img src={imgUrl} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
-                  </button>
-                ))}
+                {galleryList.map((imgUrl, idx) => {
+                  const isVid = (idx === 0 && Boolean(item.videoUrl)) || isVideoUrl(imgUrl);
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImgIdx(idx)}
+                      className={`relative w-14 h-10 sm:w-16 sm:h-12 overflow-hidden transition-all flex-shrink-0 cursor-pointer ${
+                        selectedImgIdx === idx
+                          ? 'ring-2 ring-[#D4AF37] scale-105 shadow-[0_0_12px_rgba(212,175,55,0.5)]'
+                          : 'opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      {isVideoUrl(imgUrl) ? (
+                        <video src={imgUrl} muted className="w-full h-full object-cover" />
+                      ) : (
+                        <img src={imgUrl} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                      )}
+                      {isVid && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none">
+                          <Play className="w-3.5 h-3.5 text-white fill-white" />
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}

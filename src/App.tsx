@@ -8,6 +8,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { BestCaptures } from './components/BestCaptures';
 import { ColorGradingSection } from './components/ColorGradingSection';
 import { AboutStudio } from './components/AboutStudio';
+import { CinematicFilms } from './components/CinematicFilms';
 import { InstagramGrid } from './components/InstagramGrid';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -86,6 +87,11 @@ export function App() {
           <PortfolioCategories
             onSelectItem={(item) => setLightboxItem(item)}
             onOpenInquiry={() => setInquiryModalOpen(true)}
+          />
+
+          {/* Cinematic Films Section */}
+          <CinematicFilms
+            onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
           />
 
           {/* Best Captures Highlight Section */}

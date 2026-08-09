@@ -13,17 +13,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenInquiry 
     {
       id: 'editing',
       title: 'Editing',
-      imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785866009/WhatsApp_Image_2026-08-02_at_18.26.24_jkjm60.jpg',
+      imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786276403/WhatsApp_Image_2026-08-09_at_17.21.00_wqpbvo.jpg',
     },
     {
       id: 'video',
       title: 'Video',
-      imageUrl: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&q=90&w=1200',
+      imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786276403/WhatsApp_Image_2026-08-09_at_17.21.54_gbkgpt.jpg',
     },
     {
       id: 'photography',
       title: 'Photography',
-      imageUrl: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=90&w=1200',
+      imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786276403/WhatsApp_Image_2026-08-09_at_17.22.28_yhddss.jpg',
     },
   ];
 

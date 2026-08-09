@@ -39,6 +39,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     year: '2026',
     imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785866523/%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%82%E0%A4%B0_%EF%B8%8F._weddingvibes_weddingmoments_indianwedding_weddingrituals_bridegroom_weddingphot_d5otre.jpg',
     galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/IMG_5622_ca0bir.jpg',
       'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785866523/%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%82%E0%A4%B0_%EF%B8%8F._weddingvibes_weddingmoments_indianwedding_weddingrituals_bridegroom_weddingphot_d5otre.jpg',
       'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785867313/The_easiest_Yes_and_the_beginning_of_forever._%EF%B8%8F_Engagement_CoupleShoot_LoveStory_Engagem_za1nnm.jpg',
       'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785868097/Aniket_x_pallavi_hnyxky.jpg',
@@ -101,16 +102,17 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     id: 'port-4',
-    title: 'RUSHLIGHT',
+    title: 'CINEMATIC SHOOTS',
     category: 'Destination',
     location: 'Shinjuku, Tokyo',
     year: '2025',
-    imageUrl: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&q=85&w=1600',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786278398/WhatsApp_Image_2026-08-09_at_17.55.58_p2jk9s.jpg',
+    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786277325/final_video-compressed_jm7bql.mp4',
     galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786278398/WhatsApp_Image_2026-08-09_at_17.55.58_p2jk9s.jpg',
       'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&q=85&w=1600',
       'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=85&w=1600',
-      'https://images.unsplash.com/photo-1528164344705-475426879e0d?auto=format&fit=crop&q=85&w=1600',
-      'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=85&w=1600'
+      'https://images.unsplash.com/photo-1528164344705-475426879e0d?auto=format&fit=crop&q=85&w=1600'
     ],
     aspectRatio: 'wide',
     cameraSpecs: 'Sony A1 | 50mm f/1.2 GM',
@@ -118,6 +120,26 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     clientNames: 'Kenji & Aria',
     description: 'Bespoke twilight streetscape featuring glowing neon signs and golden street lights in motion.',
     featuredIn: "Harper's Bazaar",
+  },
+  {
+    id: 'port-4-2',
+    title: 'CINEMATIC SHOOTS II',
+    category: 'Destination',
+    location: 'Provence, France',
+    year: '2025',
+    imageUrl: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=2000',
+    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786279927/01-compressed_mudu00.mp4',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=2000',
+      'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=85&w=2000',
+      'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=2000'
+    ],
+    aspectRatio: 'wide',
+    cameraSpecs: 'Kodak 16mm Film + RED V-Raptor 8K',
+    filmStock: 'Kodak 16mm Film',
+    clientNames: 'Les Rêves De Provence',
+    description: 'Combining 16mm analog reel footage with aerial drone movements over lavender fields at twilight.',
+    featuredIn: 'Vogue Cinema Selection',
   },
   {
     id: 'port-5',
@@ -159,6 +181,145 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Chiaroscuro lighting and silk bridal drapery in a 16th-century Florentine palace gallery.',
     featuredIn: 'Elle Wedding International',
   }
+];
+
+export const BEST_CAPTURES: PortfolioItem[] = [
+  {
+    id: 'best-cap-1',
+    title: 'ROYAL HERITAGE',
+    category: 'Weddings',
+    location: 'Royal Palace, India',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/IMG_5622_ca0bir.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/IMG_5622_ca0bir.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785866523/%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%82%E0%A4%B0_%EF%B8%8F._weddingvibes_weddingmoments_indianwedding_weddingrituals_bridegroom_weddingphot_d5otre.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785867313/The_easiest_Yes_and_the_beginning_of_forever._%EF%B8%8F_Engagement_CoupleShoot_LoveStory_Engagem_za1nnm.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785868097/Aniket_x_pallavi_hnyxky.jpg'
+    ],
+    aspectRatio: 'wide',
+    cameraSpecs: 'Sony A1 | 85mm f/1.2 GM',
+    filmStock: 'Kodak Portra 400',
+    clientNames: 'Fairytale Frames',
+    description: 'A regal portrait capturing royal heritage, vibrant traditional attire, and timeless elegance.',
+    featuredIn: 'Vogue Weddings',
+  },
+  {
+    id: 'best-cap-2',
+    title: 'CELESTIAL MOMENTS',
+    category: 'Weddings',
+    location: 'Destination Wedding',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC08356_eqdbzt.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC08356_eqdbzt.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/IMG_5622_ca0bir.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785866523/%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%82%E0%A4%B0_%EF%B8%8F._weddingvibes_weddingmoments_indianwedding_weddingrituals_bridegroom_weddingphot_d5otre.jpg'
+    ],
+    aspectRatio: 'portrait',
+    cameraSpecs: 'Sony A1 | 50mm f/1.2 GM',
+    filmStock: 'Fujifilm Pro 400H',
+    clientNames: 'Fairytale Frames',
+    description: 'An intimate bridal capture filled with emotional depth, golden light, and authentic passion.',
+    featuredIn: 'Harper’s Bazaar Bride',
+  },
+  {
+    id: 'best-cap-3',
+    title: 'SILKEN SILHOUETTE',
+    category: 'Weddings',
+    location: 'Udaipur, Rajasthan',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003975/compressed-KRN07144_lr4l2l.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003975/compressed-KRN07144_lr4l2l.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC08356_eqdbzt.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/IMG_5622_ca0bir.jpg'
+    ],
+    aspectRatio: 'tall',
+    cameraSpecs: 'Leica SL2 | 35mm Summilux-SL',
+    filmStock: 'Kodak Tri-X 400',
+    clientNames: 'Fairytale Frames',
+    description: 'A striking fine-art portrait capturing grace, intricate craftsmanship, and golden sunset tones.',
+    featuredIn: 'Brides Magazine',
+  },
+  {
+    id: 'best-cap-4',
+    title: 'VALENTINE BLISS',
+    category: 'Weddings',
+    location: 'Jaipur, Rajasthan',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785867894/468852340_18379839511110187_372767587454749387_n_gxezgn.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785867894/468852340_18379839511110187_372767587454749387_n_gxezgn.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003975/compressed-KRN07144_lr4l2l.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC08356_eqdbzt.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/IMG_5622_ca0bir.jpg'
+    ],
+    aspectRatio: 'portrait',
+    cameraSpecs: 'Sony A1 | 85mm f/1.2 GM',
+    filmStock: 'Kodak Portra 400',
+    clientNames: 'Fairytale Frames',
+    description: 'An ethereal romantic moment bathed in soft ambient lighting, capturing delicate emotion.',
+    featuredIn: 'Vogue Weddings',
+  },
+  {
+    id: 'best-cap-5',
+    title: 'ELEGANCE UNVEILED',
+    category: 'Weddings',
+    location: 'Palace Estate',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786280044/DSC02292_1_ouie8i.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786280044/DSC02292_1_ouie8i.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785867894/468852340_18379839511110187_372767587454749387_n_gxezgn.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786003975/compressed-KRN07144_lr4l2l.jpg'
+    ],
+    aspectRatio: 'wide',
+    cameraSpecs: 'Sony A1 | 50mm f/1.2 GM',
+    filmStock: 'Kodak Portra 400',
+    clientNames: 'Fairytale Frames',
+    description: 'An exquisite portrait framing timeless bridal poise, fine embroidery details, and cinematic depth.',
+    featuredIn: 'Vogue Weddings',
+  },
+  {
+    id: 'best-cap-6',
+    title: 'FOREVER BEGINS',
+    category: 'Weddings',
+    location: 'Royal Destination',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785865902/Mohit_x_Pranjal_Forever_starts_here_%EF%B8%8FMemories_made_timeless_by_Fairytale_Frames_Photography..jpg_xkcvu3.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785865902/Mohit_x_Pranjal_Forever_starts_here_%EF%B8%8FMemories_made_timeless_by_Fairytale_Frames_Photography..jpg_xkcvu3.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786280044/DSC02292_1_ouie8i.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785867894/468852340_18379839511110187_372767587454749387_n_gxezgn.jpg'
+    ],
+    aspectRatio: 'portrait',
+    cameraSpecs: 'Sony A1 | 50mm f/1.2 GM',
+    filmStock: 'Kodak Portra 400',
+    clientNames: 'Mohit x Pranjal',
+    description: 'Forever starts here—timeless wedding memories captured in rich golden hues and emotional resonance.',
+    featuredIn: 'Vogue Weddings',
+  },
+  {
+    id: 'best-cap-7',
+    title: 'GOLDEN ELEGANCE',
+    category: 'Weddings',
+    location: 'Royal Destination',
+    year: '2026',
+    imageUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785869454/653601529_18425943268140436_5194173069579135860_n_gy8xzr.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785869454/653601529_18425943268140436_5194173069579135860_n_gy8xzr.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1785865902/Mohit_x_Pranjal_Forever_starts_here_%EF%B8%8FMemories_made_timeless_by_Fairytale_Frames_Photography..jpg_xkcvu3.jpg',
+      'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786280044/DSC02292_1_ouie8i.jpg'
+    ],
+    aspectRatio: 'portrait',
+    cameraSpecs: 'Sony A1 | 85mm f/1.2 GM',
+    filmStock: 'Kodak Portra 400',
+    clientNames: 'Fairytale Frames',
+    description: 'A glowing candid moment capturing pure joy, tradition, and radiant celebratory warmth.',
+    featuredIn: 'Vogue Weddings',
+  },
+  PORTFOLIO_ITEMS[0],
 ];
 
 export const FEATURED_STORIES: FeaturedStory[] = [
@@ -240,6 +401,7 @@ export const CINEMATIC_FILMS: CinematicFilm[] = [
     location: 'Bellagio, Lake Como',
     duration: '06:42 Mins',
     thumbnailUrl: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=85&w=2000',
+    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786277325/final_video-compressed_jm7bql.mp4',
     directorNotes: 'Shot exclusively on Arri Alexa Mini LF with vintage Cooke Anamorphic lenses to create lush bokeh and timeless film texture.',
     specs: 'Arri Alexa Mini LF | Cooke Anamorphic 40mm/75mm | Custom Score',
     awardBadge: 'Awwwards Best Wedding Film 2025'
@@ -251,6 +413,7 @@ export const CINEMATIC_FILMS: CinematicFilm[] = [
     location: 'Provence, France',
     duration: '04:15 Mins',
     thumbnailUrl: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=2000',
+    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786279927/01-compressed_mudu00.mp4',
     directorNotes: 'Combining 16mm analog reel footage with aerial drone movements over lavender fields at twilight.',
     specs: 'Kodak 16mm Film + RED V-Raptor 8K | Live Acoustic Cello',
     awardBadge: 'Vogue Cinema Selection'

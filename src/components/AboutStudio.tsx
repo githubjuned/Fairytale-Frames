@@ -20,7 +20,7 @@ export const AboutStudio: React.FC = () => {
             <span>ABOUT THE STUDIO</span>
           </div>
           <h2 className="heading-h2 text-white mb-6">
-            HI, I AM <span className="font-cormorant italic text-gold-gradient underline underline-offset-4 decoration-[#D4AF37]">ALEX TURNER</span>
+            HI, I AM <span className="font-cormorant italic text-gold-gradient underline underline-offset-4 decoration-[#D4AF37]">KIRAN HIRE</span>
           </h2>
           <p className="text-sm sm:text-base font-sans text-white/70 leading-relaxed max-w-2xl">
             I'm absolutely thrilled to share my photography journey with you! With over a decade of experience behind the lens, photography is more than just a job for me—it's my ultimate passion and a way of life.
@@ -37,7 +37,7 @@ export const AboutStudio: React.FC = () => {
         >
           <img
             src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=85&w=1600"
-            alt="Alex Turner Photography Studio"
+            alt="Kiran Hire Photography Studio"
             className="w-full h-full object-cover filter brightness-90 contrast-105 hover:scale-105 transition-transform duration-1000 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/20" />

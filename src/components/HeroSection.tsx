@@ -91,18 +91,17 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
             2. MAIN HERO IMAGE SHOWCASE WITH SCALE-UP & PARALLAX
             ========================================================================= */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.88, y: 40 }}
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.15, delay: 0.35, ease: cubicEase }}
-          className="relative w-full max-w-5xl mx-auto rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.95)] border border-white/10 group"
+          transition={{ duration: 1, delay: 0.35, ease: cubicEase }}
+          className="relative w-full max-w-5xl mx-auto overflow-hidden group"
         >
           <motion.img
             style={{ scale: shouldReduceMotion ? 1 : imageScale, y: shouldReduceMotion ? 0 : imageY }}
-            src="https://res.cloudinary.com/dyvmqkxok/image/upload/v1785866103/WhatsApp_Image_2026-08-04_at_22.36.54_wp1xn4.jpg"
+            src="https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC02780_wjnhof.jpg"
             alt="Flagship Professional Camera Showcase"
-            className="w-full h-[380px] sm:h-[500px] lg:h-[600px] object-cover object-center filter brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="w-full h-auto max-h-[700px] object-cover object-center transition-transform duration-700 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
         </motion.div>
 
         {/* =========================================================================

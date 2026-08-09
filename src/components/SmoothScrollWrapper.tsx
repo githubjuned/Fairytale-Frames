@@ -11,15 +11,18 @@ interface SmoothScrollWrapperProps {
 
 export const SmoothScrollWrapper: React.FC<SmoothScrollWrapperProps> = ({ children }) => {
   useEffect(() => {
+    // Prevent mobile browser height changes (address bar toggle) from breaking GSAP ScrollTrigger pins
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     // Initialize Lenis for luxury 60fps momentum smooth scrolling
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.2,
     });
 
     lenis.on('scroll', ScrollTrigger.update);

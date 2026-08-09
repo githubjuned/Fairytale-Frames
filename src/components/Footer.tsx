@@ -99,20 +99,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
               </a>
             </p>
             <p>
-              <a href="mailto:fairytaleframes@agency.com" className="underline hover:text-[#D4AF37] transition-colors">
-                fairytaleframes@agency.com
+              <a href="mailto:fairytalesframe@gmail.com" className="underline hover:text-[#D4AF37] transition-colors">
+                fairytalesframe@gmail.com
               </a>
             </p>
           </div>
 
-          {/* Column 3: Brand & Links */}
+          {/* Column 3: Brand */}
           <div className="space-y-1.5 md:text-right">
             <div className="font-syne font-black text-xl text-white mb-2 tracking-tight">
               <span className="text-[#D4AF37]">/</span>FAIRYTALEFRAMES
             </div>
-            <p><a href="#" className="underline hover:text-[#D4AF37] transition-colors">Licensing</a></p>
-            <p><a href="#" className="underline hover:text-[#D4AF37] transition-colors">Style Guide</a></p>
-            <p><a href="#" className="underline hover:text-[#D4AF37] transition-colors">Change Log</a></p>
           </div>
         </div>
       </div>
