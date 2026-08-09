@@ -22,12 +22,11 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       {isVisible && (
         <motion.div
           key="ftf-splash-screen"
-          initial={{ opacity: 1 }}
+          initial={{ y: '0%' }}
+          animate={{ y: '0%' }}
           exit={{ 
-            opacity: 0, 
-            scale: 1.06, 
-            filter: 'blur(12px)',
-            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+            y: '-100%',
+            transition: { duration: 1.0, ease: [0.77, 0, 0.175, 1] } 
           }}
           className="fixed inset-0 z-[99999] bg-black flex flex-col items-center justify-center p-6 select-none overflow-hidden"
         >
@@ -41,6 +40,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
           <motion.div
             initial={{ opacity: 0, scale: 0.88, filter: 'blur(8px)', y: 15 }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', y: 0 }}
+            exit={{ opacity: 0, y: -60, transition: { duration: 0.6, ease: [0.77, 0, 0.175, 1] } }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex flex-col items-center justify-center max-w-sm sm:max-w-md w-full"
           >

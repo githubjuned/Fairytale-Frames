@@ -160,6 +160,12 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
   const titlesRef = useRef<(HTMLDivElement | null)[]>([]);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const touchStartY = useRef<number | null>(null);
+  const isAnimatingRef = useRef<boolean>(false);
+  const activeIndexRef = useRef<number>(0);
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -180,9 +186,9 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     const isMobile = window.innerWidth < 640;
-    const distancePerCard = isMobile ? window.innerHeight * 0.85 : window.innerHeight * 1.1;
+    const distancePerCard = isMobile ? window.innerHeight * 0.9 : window.innerHeight * 1.0;
 
-    // Create GSAP Timeline with ScrollTrigger scrub
+    // Create GSAP Timeline with ScrollTrigger scrub and smooth snapping
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -191,13 +197,20 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
-        scrub: isMobile ? 0.3 : 0.6,
+        scrub: isMobile ? 0.4 : 0.6,
+        fastScrollEnd: true,
+        snap: {
+          snapTo: 1 / Math.max(1, total - 1),
+          duration: { min: 0.35, max: 0.6 },
+          delay: 0.02,
+          ease: 'power2.inOut',
+        },
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const prog = self.progress;
           const idx = Math.min(
             total - 1,
-            Math.max(0, Math.floor(prog * total + 0.02))
+            Math.max(0, Math.round(prog * (total - 1)))
           );
           setActiveIndex(idx);
         },
@@ -219,7 +232,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       } else {
         gsap.set(card, { yPercent: 100, scale: 0.92, autoAlpha: 0, zIndex: 10 + i });
         if (images[i]) {
-          gsap.set(images[i], { clipPath: 'inset(10%)', yPercent: 15 });
+          gsap.set(images[i], { clipPath: 'inset(8%)', yPercent: 15 });
         }
         if (titles[i]) {
           gsap.set(titles[i], { opacity: 0, scale: 0.9, y: 20 });
@@ -256,7 +269,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
           currentImg,
           {
             yPercent: -15,
-            clipPath: 'inset(10%)',
+            clipPath: 'inset(8%)',
             duration: 1,
             ease: 'power2.inOut',
           },
@@ -320,9 +333,48 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       }
     }
 
+    // Wheel listener to lock scroll to 1 card per wheel scroll step when pinned
+    const handleWheel = (e: WheelEvent) => {
+      const st = tl.scrollTrigger;
+      if (!st || !st.isActive) return;
+
+      const currentIdx = activeIndexRef.current;
+      const isAtStart = currentIdx === 0 && e.deltaY < 0;
+      const isAtEnd = currentIdx === total - 1 && e.deltaY > 0;
+
+      // If inside pinned range, step 1 card per wheel gesture
+      if (!isAtStart && !isAtEnd) {
+        e.preventDefault();
+        if (isAnimatingRef.current) return;
+
+        const direction = e.deltaY > 0 ? 1 : -1;
+        const targetIndex = Math.min(total - 1, Math.max(0, currentIdx + direction));
+
+        if (targetIndex !== currentIdx) {
+          isAnimatingRef.current = true;
+          const start = st.start;
+          const end = st.end;
+          const totalDist = end - start;
+          const step = totalDist / Math.max(1, total - 1);
+          const targetScroll = start + targetIndex * step;
+
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth',
+          });
+
+          setTimeout(() => {
+            isAnimatingRef.current = false;
+          }, 500);
+        }
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
     ScrollTrigger.refresh();
 
     return () => {
+      window.removeEventListener('wheel', handleWheel);
       tl.scrollTrigger?.kill();
       tl.kill();
     };

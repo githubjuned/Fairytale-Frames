@@ -565,19 +565,19 @@ export const FEATURED_STORIES: FeaturedStory[] = [
 export const COLOR_GRADE_SAMPLES: ColorGradeSample[] = [
   {
     id: 'cg-1',
-    title: 'The Signature Lumière Warm Film Grade',
-    location: 'Amalfi Coast, Italy',
-    beforeImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1600&sat=-40&con=10', // flatter RAW look simulation
-    afterImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1600', // vibrant rich film look
+    title: 'The Signature Fairytale Frames Color Science',
+    location: 'Royal Destination',
+    beforeImage: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786301143/ChatGPT_Image_Aug_10_2026_12_15_24_AM_a1ren8.png',
+    afterImage: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786301300/001.JPG_fnn5lv.jpg',
     description: 'Our proprietary color science lifts shadow tones into warm rose gold while retaining organic skin texture and rich emerald greens.',
     filmEmulation: 'Kodak Portra 400 + Custom Master LUT'
   },
   {
     id: 'cg-2',
     title: 'Chiaroscuro Black & White Fine Art',
-    location: 'Place Vendôme, Paris',
-    beforeImage: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=85&w=1600&sat=-100',
-    afterImage: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=85&w=1600',
+    location: 'Royal Destination',
+    beforeImage: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786301143/ChatGPT_Image_Aug_10_2026_12_15_24_AM_a1ren8.png',
+    afterImage: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786301300/001.JPG_fnn5lv.jpg',
     description: 'Deep velvet shadows paired with luminous highlights that accentuate silk gown drapes and natural facial expressions.',
     filmEmulation: 'Ilford HP5 Plus 400 Grain Profile'
   }
