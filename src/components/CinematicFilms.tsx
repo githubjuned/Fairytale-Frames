@@ -48,7 +48,7 @@ export const CinematicFilms: React.FC<CinematicFilmsProps> = ({ onOpenVideoModal
               transition: { staggerChildren: 0.15, delayChildren: 0.1 },
             },
           }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10"
         >
           {CINEMATIC_FILMS.map((film) => (
             <motion.div
@@ -57,62 +57,36 @@ export const CinematicFilms: React.FC<CinematicFilmsProps> = ({ onOpenVideoModal
                 hidden: { opacity: 0, y: 40, scale: 0.96 },
                 visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: easeCurve } },
               }}
+              whileHover={{ scale: 1.01, y: -4 }}
               onClick={() => onOpenVideoModal(film.id)}
-              className="group cursor-pointer rounded-3xl overflow-hidden bg-[#0A0A0A] border border-[#D4AF37]/20 shadow-2xl hover:border-[#D4AF37] hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all duration-500 flex flex-col"
+              className="group cursor-pointer relative overflow-hidden bg-black transition-all duration-300 touch-manipulation active:scale-[0.98]"
             >
-              {/* Thumbnail Container */}
-              <div className="relative aspect-[16/9] overflow-hidden bg-black">
+              {/* Thumbnail Container - Pure sharp original video style */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
                 <img
                   src={film.thumbnailUrl}
                   alt={film.title}
-                  className="w-full h-full object-cover img-editorial opacity-90 group-hover:opacity-100 group-hover:scale-105"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ease-out"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/30 to-transparent" />
 
-                {/* Top Badge */}
-                {film.awardBadge && (
-                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D4AF37] text-black text-[10px] font-bold uppercase tracking-widest shadow-md">
-                    <Award className="w-3.5 h-3.5" />
-                    <span>{film.awardBadge}</span>
-                  </div>
-                )}
-
-                {/* Duration Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-[#D4AF37] text-[10px] font-mono tracking-widest uppercase border border-[#D4AF37]/30 font-bold">
-                  {film.duration}
+                {/* Title Overlay on hover or subtle gradient at bottom like Best Captures */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4 sm:p-6 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="font-cormorant italic text-lg sm:text-2xl text-white font-medium drop-shadow-md">
+                    {film.title}
+                  </span>
+                  {film.subtitle && (
+                    <span className="text-xs text-white/70 font-sans mt-0.5">
+                      {film.subtitle}
+                    </span>
+                  )}
                 </div>
 
                 {/* Center Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-[#D4AF37] text-black flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.5)] group-hover:scale-110 transition-all duration-300">
-                    <Play className="w-6 h-6 fill-current ml-1" />
+                  <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-[#D4AF37] text-black flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.6)] group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1" />
                   </div>
-                </div>
-              </div>
-
-              {/* Text Info Container */}
-              <div className="p-8 flex flex-col justify-between flex-1 space-y-4">
-                <div>
-                  <div className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-bold mb-1">
-                    {film.location}
-                  </div>
-                  <h3 className="heading-h4 text-white group-hover:text-[#D4AF37] transition-colors">
-                    {film.title}
-                  </h3>
-                  <p className="text-xs italic text-white/60 mt-1 font-syne">
-                    {film.subtitle}
-                  </p>
-                </div>
-
-                <p className="text-xs font-sans text-white/70 leading-relaxed">
-                  {film.directorNotes}
-                </p>
-
-                <div className="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between text-xs font-mono text-white/50">
-                  <span className="truncate max-w-[80%]">{film.specs}</span>
-                  <span className="text-[#D4AF37] font-bold group-hover:translate-x-1 transition-transform">
-                    PLAY REEL →
-                  </span>
                 </div>
               </div>
             </motion.div>

@@ -1,7 +1,7 @@
 export interface PortfolioItem {
   id: string;
   title: string;
-  category: 'Weddings' | 'Destination' | 'Haute Couture' | 'Fine Art';
+  category: 'Weddings' | 'Destination' | 'Haute Couture' | 'Fine Art' | 'Aerial';
   location: string;
   year: string;
   imageUrl: string;
