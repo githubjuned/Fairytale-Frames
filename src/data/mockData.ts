@@ -586,15 +586,15 @@ export const COLOR_GRADE_SAMPLES: ColorGradeSample[] = [
 export const CINEMATIC_FILMS: CinematicFilm[] = [
   {
     id: 'film-1',
-    title: 'ECHOES OF COMO',
-    subtitle: 'The 4K Anamorphic Wedding Film of Victoria & Alexander',
-    location: 'Bellagio, Lake Como',
-    duration: '06:42 Mins',
-    thumbnailUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786297553/Screenshot_2026-08-09_231534_o1wa3v.png',
-    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786277325/final_video-compressed_jm7bql.mp4',
-    directorNotes: 'Shot exclusively on Arri Alexa Mini LF with vintage Cooke Anamorphic lenses to create lush bokeh and timeless film texture.',
-    specs: 'Arri Alexa Mini LF | Cooke Anamorphic 40mm/75mm | Custom Score',
-    awardBadge: 'Awwwards Best Wedding Film 2025'
+    title: 'KIRAN X VAIDIK FILM',
+    subtitle: '4K Cinematic Wedding Film of Kiran & Vaidik',
+    location: 'Royal Destination',
+    duration: '04:45 Mins',
+    thumbnailUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786298668/Screenshot_2026-08-09_233345_jcjrth.png',
+    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786298296/kiran_vaidik_final_-compressed_o3jnke.mp4',
+    directorNotes: 'A magnificent 4K wedding film capturing tender romance, royal celebrations, and timeless wedding memories.',
+    specs: 'Sony A1 8K | Mastered 4K HDR',
+    awardBadge: 'Kiran & Vaidik Selection'
   },
   {
     id: 'film-2',
@@ -670,15 +670,15 @@ export const CINEMATIC_FILMS: CinematicFilm[] = [
   },
   {
     id: 'film-8',
-    title: 'KIRAN X VAIDIK FILM',
-    subtitle: '4K Cinematic Wedding Film of Kiran & Vaidik',
-    location: 'Royal Destination',
-    duration: '04:45 Mins',
-    thumbnailUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786298668/Screenshot_2026-08-09_233345_jcjrth.png',
-    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786298296/kiran_vaidik_final_-compressed_o3jnke.mp4',
-    directorNotes: 'A magnificent 4K wedding film capturing tender romance, royal celebrations, and timeless wedding memories.',
-    specs: 'Sony A1 8K | Mastered 4K HDR',
-    awardBadge: 'Kiran & Vaidik Selection'
+    title: 'ECHOES OF COMO',
+    subtitle: 'The 4K Anamorphic Wedding Film of Victoria & Alexander',
+    location: 'Bellagio, Lake Como',
+    duration: '06:42 Mins',
+    thumbnailUrl: 'https://res.cloudinary.com/dyvmqkxok/image/upload/v1786297553/Screenshot_2026-08-09_231534_o1wa3v.png',
+    videoUrl: 'https://res.cloudinary.com/dyvmqkxok/video/upload/v1786277325/final_video-compressed_jm7bql.mp4',
+    directorNotes: 'Shot exclusively on Arri Alexa Mini LF with vintage Cooke Anamorphic lenses to create lush bokeh and timeless film texture.',
+    specs: 'Arri Alexa Mini LF | Cooke Anamorphic 40mm/75mm | Custom Score',
+    awardBadge: 'Awwwards Best Wedding Film 2025'
   }
 ];
 

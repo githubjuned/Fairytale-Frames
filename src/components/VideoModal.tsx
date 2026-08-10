@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CINEMATIC_FILMS } from '../data/mockData';
-import { X, Play, Pause, Volume2, VolumeX, Clapperboard, Award, ArrowUpRight } from 'lucide-react';
+import { X, Play, Pause, Volume2, VolumeX, Clapperboard, Maximize, Minimize, ArrowUpRight } from 'lucide-react';
 
 interface VideoModalProps {
   filmId: string | null;
@@ -15,9 +15,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTimeText, setCurrentTimeText] = useState('00:00');
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const film = CINEMATIC_FILMS.find((f) => f.id === filmId) || CINEMATIC_FILMS[0];
 
@@ -41,6 +43,35 @@ export const VideoModal: React.FC<VideoModalProps> = ({
       videoRef.current.muted = isMuted;
     }
   }, [isMuted]);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      if (containerRef.current.requestFullscreen) {
+        containerRef.current.requestFullscreen().catch(() => {});
+      } else if ((containerRef.current as any).webkitRequestFullscreen) {
+        (containerRef.current as any).webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      }
+    }
+  };
 
   if (!filmId) return null;
 
@@ -75,7 +106,12 @@ export const VideoModal: React.FC<VideoModalProps> = ({
 
       <div className="relative w-full max-w-5xl bg-[#0A0A0A] rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-[0_0_40px_rgba(212,175,55,0.15)] flex flex-col">
         {/* Video Player Container */}
-        <div className="relative aspect-[16/9] bg-black overflow-hidden flex items-center justify-center group">
+        <div 
+          ref={containerRef}
+          className={`relative bg-black overflow-hidden flex items-center justify-center group ${
+            isFullscreen ? 'w-full h-full min-h-screen' : 'aspect-[16/9]'
+          }`}
+        >
           {film.videoUrl ? (
             <video
               ref={videoRef}
@@ -101,16 +137,8 @@ export const VideoModal: React.FC<VideoModalProps> = ({
             />
           )}
 
-          {/* Animated Overlay Waveform indicating live video play */}
-          {isPlaying && (
-            <div className="absolute top-6 left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[#D4AF37] text-[11px] font-mono border border-[#D4AF37]/30 font-bold z-10 pointer-events-none">
-              <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-ping" />
-              <span>4K CINEMA STREAM • {film.duration}</span>
-            </div>
-          )}
-
           {/* Player Central Controls Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className="w-20 h-20 rounded-full bg-[#D4AF37] hover:bg-[#B89628] text-black flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-all transform hover:scale-110 pointer-events-auto cursor-pointer"
@@ -125,7 +153,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
           </div>
 
           {/* Bottom Video Progress Control Bar */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between gap-4 text-white text-xs z-10">
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent flex items-center justify-between gap-4 text-white text-xs z-30">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsMuted(!isMuted)}
@@ -150,9 +178,20 @@ export const VideoModal: React.FC<VideoModalProps> = ({
               />
             </div>
 
-            <span className="font-mono text-[11px] text-[#D4AF37] uppercase tracking-wider font-bold hidden sm:inline">
-              Anamorphic 2.39:1
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[11px] text-[#D4AF37] uppercase tracking-wider font-bold hidden sm:inline">
+                Anamorphic 2.39:1
+              </span>
+
+              <button
+                onClick={toggleFullscreen}
+                className="p-2 rounded-full bg-white/10 hover:bg-[#D4AF37] hover:text-black transition-colors cursor-pointer"
+                aria-label={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+                title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+              >
+                {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -182,3 +221,4 @@ export const VideoModal: React.FC<VideoModalProps> = ({
     </div>
   );
 };
+

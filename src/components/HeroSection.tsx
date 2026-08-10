@@ -192,7 +192,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
         transition={{ duration: 0.8, ease: cubicEase }}
         className="relative mt-8 sm:mt-14 mb-2 sm:mb-6 py-4 sm:py-8 overflow-hidden w-full z-10 select-none"
       >
-        <div className="relative w-full py-3 sm:py-4 bg-black border-y border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.9)] -rotate-1 -skew-x-2 scale-105 z-10 backdrop-blur-sm overflow-hidden flex">
+        <div className="relative w-full py-3 sm:py-4 bg-black border-y border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.9)] -rotate-3 sm:-rotate-4 -skew-x-3 sm:-skew-x-4 scale-105 z-10 backdrop-blur-sm overflow-hidden flex">
           <motion.div 
             animate={{ x: ['0%', '-50%'] }}
             transition={{ repeat: Infinity, ease: 'linear', duration: 25 }}

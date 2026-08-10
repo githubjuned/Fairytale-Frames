@@ -36,7 +36,7 @@ export const AboutStudio: React.FC = () => {
           className="relative rounded-3xl overflow-hidden border border-[#D4AF37]/20 shadow-2xl mb-16 h-[380px] sm:h-[500px] w-full bg-[#0A0A0A]"
         >
           <img
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=85&w=1600"
+            src="https://res.cloudinary.com/dyvmqkxok/image/upload/v1786364968/file_00000000829881fa9df0eb8f59c8e23b_eqyf7y.png"
             alt="Kiran Hire Photography Studio"
             className="w-full h-full object-cover filter brightness-90 contrast-105 hover:scale-105 transition-transform duration-1000 ease-out"
           />
