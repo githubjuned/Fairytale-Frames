@@ -27,20 +27,20 @@ export const AboutStudio: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Wide Studio Hero Image with Mask Clip-Path & Blur Reveal */}
+        {/* Wide Studio Hero Image with Blur Reveal */}
         <motion.div
-          initial={{ clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', opacity: 0.2, filter: 'blur(8px)' }}
-          whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', opacity: 1, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 1.1, ease: cubicEase }}
-          className="relative rounded-3xl overflow-hidden border border-[#D4AF37]/20 shadow-2xl mb-16 h-[380px] sm:h-[500px] w-full bg-[#0A0A0A]"
+          initial={{ opacity: 0, y: 25, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.9, ease: cubicEase }}
+          className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D4AF37]/20 shadow-2xl mb-12 sm:mb-16 h-[260px] xs:h-[320px] sm:h-[500px] w-full bg-[#0A0A0A]"
         >
           <img
             src="https://res.cloudinary.com/dyvmqkxok/image/upload/v1786364968/file_00000000829881fa9df0eb8f59c8e23b_eqyf7y.png"
             alt="Kiran Hire Photography Studio"
             className="w-full h-full object-cover filter brightness-90 contrast-105 hover:scale-105 transition-transform duration-1000 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/20 pointer-events-none" />
         </motion.div>
 
         {/* Bio Copy Blocks with Staggered Blur-to-Sharp Text Reveal */}

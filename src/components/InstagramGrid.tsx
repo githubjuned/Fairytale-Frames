@@ -47,27 +47,25 @@ export const InstagramGrid: React.FC = () => {
           </a>
         </motion.div>
 
-        {/* Live Feed Grid with Staggered Clip-Path Reveals */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {/* Live Feed Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
           {INSTAGRAM_POSTS.map((post, idx) => (
             <motion.a
               key={post.id}
               initial={{ 
                 opacity: 0, 
-                y: 30, 
-                clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' 
+                y: 20
               }}
               whileInView={{ 
                 opacity: 1, 
-                y: 0, 
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' 
+                y: 0
               }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.8, delay: idx * 0.09, ease: cubicEase }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.6, delay: idx * 0.08, ease: cubicEase }}
               href={post.permalink}
               target="_blank"
               rel="noreferrer"
-              className="group relative rounded-2xl overflow-hidden aspect-square bg-[#0A0A0A] border border-[#D4AF37]/20 hover:border-[#D4AF37] shadow-xl hover:shadow-[0_0_20px_rgba(212,175,55,0.25)] transition-all"
+              className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-[#0A0A0A] border border-[#D4AF37]/20 hover:border-[#D4AF37] shadow-xl hover:shadow-[0_0_20px_rgba(212,175,55,0.25)] transition-all"
             >
               <img
                 src={post.imageUrl}
@@ -75,7 +73,7 @@ export const InstagramGrid: React.FC = () => {
                 className="w-full h-full object-cover img-editorial filter brightness-90 group-hover:scale-105 transition-all duration-500 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-between text-white text-xs">
+              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 sm:p-4 flex flex-col justify-between text-white text-xs">
                 <div className="flex items-center justify-end gap-3 text-white/90">
                   <span className="flex items-center gap-1 font-mono text-[#D4AF37]">
                     <Heart className="w-3.5 h-3.5 fill-current text-[#D4AF37]" />
@@ -87,7 +85,7 @@ export const InstagramGrid: React.FC = () => {
                   </span>
                 </div>
 
-                <p className="line-clamp-3 text-[11px] font-sans text-white/90 leading-relaxed">
+                <p className="line-clamp-3 text-[10px] sm:text-[11px] font-sans text-white/90 leading-relaxed">
                   {post.caption}
                 </p>
               </div>
