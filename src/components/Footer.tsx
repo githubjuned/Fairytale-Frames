@@ -11,7 +11,7 @@ const cubicEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
   return (
-    <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-12 border-t border-[#D4AF37]/20 font-sans select-none overflow-hidden">
+    <footer className="bg-white text-black pt-24 pb-12 px-6 md:px-12 border-t border-black/10 font-sans select-none overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* HUGE IMPACT CTA BANNER WITH LARGE TYPOGRAPHY REVEAL */}
@@ -24,17 +24,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
             className="space-y-1.5 sm:space-y-3"
           >
             {/* Line 1: LET'S TALK */}
-            <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-white leading-none">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-black leading-none">
               LET'S TALK
             </h2>
 
             {/* Line 2: GET TO */}
-            <div className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-white leading-none">
+            <div className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-black leading-none">
               GET TO
             </div>
 
             {/* Line 3: WORKING with enlarged animated 'O' */}
-            <div className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-white leading-none flex items-center flex-nowrap">
+            <div className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-black uppercase tracking-tight text-black leading-none flex items-center flex-nowrap">
               <span>W</span>
               {/* Circular Emblem replacing 'O' */}
               <motion.div
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
                     d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
                     fill="none"
                   />
-                  <text className="text-[9px] font-mono tracking-[0.18em] fill-[#D4AF37] font-bold uppercase">
+                  <text className="text-[9px] font-mono tracking-[0.18em] fill-[#B8860B] font-bold uppercase">
                     <textPath href="#circlePathFooter" startOffset="0%">
                       FAIRYTALEFRAMES • FAIRYTALEFRAMES •
                     </textPath>
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
             whileHover={{ scale: 1.15, rotate: 12 }}
             whileTap={{ scale: 0.95 }}
             onClick={onOpenInquiry}
-            className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-[#D4AF37] text-black flex items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)] shrink-0 group cursor-pointer"
+            className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-[#D4AF37] text-black flex items-center justify-center transition-all duration-300 shadow-lg shrink-0 group cursor-pointer"
             aria-label="Get in touch"
           >
             <ArrowUpRight className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 stroke-[2.5] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -79,27 +79,27 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
         </div>
 
         {/* Horizontal Divider Line */}
-        <hr className="border-t border-[#D4AF37]/20 mb-8" />
+        <hr className="border-t border-black/10 mb-8" />
 
         {/* Subfooter (3 Columns: Left Copyright, Middle Contact, Right Brand/Links) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start text-xs font-sans text-white/80">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start text-xs font-sans text-black/80">
           {/* Column 1: Copyright */}
           <div>
             <p className="text-sm">
-              © {new Date().getFullYear()} <a href="#" className="text-gold-gradient font-bold underline hover:text-[#F4E0A5]">Fairytaleframes</a>. All rights reserved.
+              © {new Date().getFullYear()} <a href="#" className="text-gold-gradient font-bold underline hover:text-[#B8860B]">Fairytaleframes</a>. All rights reserved.
             </p>
           </div>
 
           {/* Column 2: Contact Us */}
           <div className="space-y-1.5 md:text-center">
-            <h5 className="font-semibold text-[#D4AF37] font-mono uppercase text-xs mb-2">Contact Us</h5>
+            <h5 className="font-semibold text-[#B8860B] font-mono uppercase text-xs mb-2">Contact Us</h5>
             <p>
               <a href="https://wa.me/917709434402" target="_blank" rel="noreferrer" className="underline hover:text-[#25D366] transition-colors">
                 +91 77094 34402 (WhatsApp)
               </a>
             </p>
             <p>
-              <a href="mailto:fairytalesframe@gmail.com" className="underline hover:text-[#D4AF37] transition-colors">
+              <a href="mailto:fairytalesframe@gmail.com" className="underline hover:text-[#B8860B] transition-colors">
                 fairytalesframe@gmail.com
               </a>
             </p>
@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
 
           {/* Column 3: Brand */}
           <div className="space-y-1.5 md:text-right">
-            <div className="font-syne font-black text-xl text-white mb-2 tracking-tight">
+            <div className="font-syne font-black text-xl text-black mb-2 tracking-tight">
               <span className="text-[#D4AF37]">/</span>FAIRYTALEFRAMES
             </div>
           </div>

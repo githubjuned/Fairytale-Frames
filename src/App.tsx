@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { SplashScreen } from './components/SplashScreen';
 import { SmoothScrollWrapper } from './components/SmoothScrollWrapper';
 import { Navbar } from './components/Navbar';
+import { FullscreenHeroVideo } from './components/FullscreenHeroVideo';
 import { HeroSection } from './components/HeroSection';
 import { PortfolioCategories } from './components/PortfolioCategories';
-import { ServicesSection } from './components/ServicesSection';
+import { ServicesPage } from './components/ServicesPage';
+import { CustomQuotePage } from './components/CustomQuotePage';
+import { CandidReelsSection } from './components/CandidReelsSection';
 import { BestCaptures } from './components/BestCaptures';
 import { ColorGradingSection } from './components/ColorGradingSection';
 import { AboutStudio } from './components/AboutStudio';
@@ -22,6 +25,7 @@ import { PORTFOLIO_ITEMS } from './data/mockData';
 import { audioEngine } from './utils/audio';
 
 export function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'services' | 'quote'>('home');
   const [showSplash, setShowSplash] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [lightboxItem, setLightboxItem] = useState<PortfolioItem | null>(null);
@@ -32,6 +36,24 @@ export function App() {
   const handleDirectWhatsApp = () => {
     const text = encodeURIComponent('Hello Fairytaleframes Studio, I would like to inquire about your services.');
     window.open('https://wa.me/917709434402?text=' + text, '_blank');
+  };
+
+  const handleNavigate = (page: 'home' | 'services' | 'quote', sectionId?: string) => {
+    setCurrentPage(page);
+    if (page === 'services' || page === 'quote') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (sectionId) {
+      setTimeout(() => {
+        const target = document.querySelector(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 50);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   // Sync ambient sound
@@ -56,7 +78,7 @@ export function App() {
 
   return (
     <SmoothScrollWrapper>
-      <div className="min-h-screen bg-[#070604] bg-golden-black-root text-white font-sans antialiased selection:bg-[#D4AF37] selection:text-black relative">
+      <div className="min-h-screen bg-white text-black font-sans antialiased selection:bg-[#D4AF37] selection:text-black relative">
         {/* Opening Fullscreen Animated Logo Splash Screen */}
         {showSplash && (
           <SplashScreen onComplete={() => setShowSplash(false)} />
@@ -64,55 +86,81 @@ export function App() {
 
         {/* Floating Glass Navbar */}
         <Navbar
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
           onOpenInquiry={() => setInquiryModalOpen(true)}
           onOpenWhatsApp={handleDirectWhatsApp}
           soundEnabled={soundEnabled}
           setSoundEnabled={setSoundEnabled}
         />
 
-        {/* Main Homepage Flow */}
-        <main>
-          {/* Fullscreen Cinematic Hero */}
-          <HeroSection
-            onOpenInquiry={() => setInquiryModalOpen(true)}
-            onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
-          />
+        {/* Dynamic Page Router */}
+        {currentPage === 'services' ? (
+          /* Dedicated Services & Capabilities Page */
+          <main>
+            <ServicesPage
+              onBackToHome={() => handleNavigate('home')}
+              onOpenInquiry={() => setInquiryModalOpen(true)}
+              onOpenWhatsApp={handleDirectWhatsApp}
+            />
+          </main>
+        ) : currentPage === 'quote' ? (
+          /* Dedicated Custom Quote & Estimate Page */
+          <main>
+            <CustomQuotePage
+              onBackToHome={() => handleNavigate('home')}
+              onOpenWhatsApp={handleDirectWhatsApp}
+            />
+          </main>
+        ) : (
+          /* Main Homepage Flow (Without Services Section) */
+          <main>
+            {/* Fullscreen Edge-to-Edge Autoplay Wedding Film Hero */}
+            <FullscreenHeroVideo
+              onOpenInquiry={() => setInquiryModalOpen(true)}
+              onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
+            />
 
-          {/* Services Section (Editing, Video, Photography) */}
-          <ServicesSection
-            onOpenInquiry={() => setInquiryModalOpen(true)}
-          />
+            {/* Capturing Moments Through The Lens Hero Section */}
+            <HeroSection
+              onOpenInquiry={() => setInquiryModalOpen(true)}
+              onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
+            />
 
-          {/* Selected Works Portfolio Categories & Gallery */}
-          <PortfolioCategories
-            onSelectItem={(item) => setLightboxItem(item)}
-            onOpenInquiry={() => setInquiryModalOpen(true)}
-          />
+            {/* Candid Moments Captured in Motion – Watch the Reels */}
+            <CandidReelsSection />
 
-          {/* Cinematic Films Section */}
-          <CinematicFilms
-            onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
-          />
+            {/* Best Captures Highlight Section */}
+            <BestCaptures
+              onSelectItem={(item) => setLightboxItem(item)}
+            />
 
-          {/* Best Captures Highlight Section */}
-          <BestCaptures
-            onSelectItem={(item) => setLightboxItem(item)}
-          />
+            {/* Selected Works Portfolio Categories & Gallery */}
+            <PortfolioCategories
+              onSelectItem={(item) => setLightboxItem(item)}
+              onOpenInquiry={() => setInquiryModalOpen(true)}
+            />
 
-          {/* Before & After Color Grading Comparison */}
-          <ColorGradingSection />
+            {/* Cinematic Films Section */}
+            <CinematicFilms
+              onOpenVideoModal={(filmId) => setActiveFilmId(filmId)}
+            />
 
-          {/* About the Studio & Equipment */}
-          <AboutStudio />
+            {/* Before & After Color Grading Comparison */}
+            <ColorGradingSection />
 
-          {/* Live Instagram Feed */}
-          <InstagramGrid />
+            {/* About the Studio & Equipment */}
+            <AboutStudio />
 
-          {/* Commission Contact & Inquiry Form */}
-          <ContactSection
-            onOpenWhatsApp={handleDirectWhatsApp}
-          />
-        </main>
+            {/* Live Instagram Feed */}
+            <InstagramGrid />
+
+            {/* Commission Contact & Inquiry Form */}
+            <ContactSection
+              onOpenWhatsApp={handleDirectWhatsApp}
+            />
+          </main>
+        )}
 
         {/* Studio Footer */}
         <Footer

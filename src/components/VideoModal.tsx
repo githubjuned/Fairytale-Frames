@@ -104,7 +104,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
         <X className="w-6 h-6" />
       </button>
 
-      <div className="relative w-full max-w-5xl bg-[#0A0A0A] rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-[0_0_40px_rgba(212,175,55,0.15)] flex flex-col">
+      <div className="relative w-full max-w-5xl bg-white rounded-3xl overflow-hidden border border-black/10 shadow-2xl flex flex-col">
         {/* Video Player Container */}
         <div 
           ref={containerRef}
@@ -196,14 +196,14 @@ export const VideoModal: React.FC<VideoModalProps> = ({
         </div>
 
         {/* Film Description Footer */}
-        <div className="p-8 bg-[#050505] border-t border-[#D4AF37]/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-white">
+        <div className="p-8 bg-neutral-50 border-t border-black/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-black">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#D4AF37] font-mono font-bold">
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#B8860B] font-mono font-bold">
               <Clapperboard className="w-3.5 h-3.5" />
               <span>{film.location}</span>
             </div>
-            <h3 className="text-2xl font-syne font-bold uppercase text-white">{film.title}</h3>
-            <p className="text-xs text-white/70 max-w-xl font-sans leading-relaxed">{film.directorNotes}</p>
+            <h3 className="text-2xl font-syne font-bold uppercase text-black">{film.title}</h3>
+            <p className="text-xs text-black/75 max-w-xl font-sans leading-relaxed">{film.directorNotes}</p>
           </div>
 
           <button
@@ -211,7 +211,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
               onClose();
               onOpenInquiry();
             }}
-            className="px-6 py-3 rounded-full bg-[#D4AF37] text-black text-xs font-bold uppercase tracking-widest hover:bg-[#B89628] transition-all flex items-center gap-2 whitespace-nowrap shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.3)] cursor-pointer"
+            className="px-6 py-3 rounded-full bg-[#D4AF37] text-black text-xs font-bold uppercase tracking-widest hover:bg-[#B89628] transition-all flex items-center gap-2 whitespace-nowrap shrink-0 shadow-md cursor-pointer"
           >
             <span>Commission A Film</span>
             <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />

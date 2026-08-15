@@ -2,12 +2,13 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { INSTAGRAM_POSTS } from '../data/mockData';
 import { Instagram, Heart, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { getOptimizedImageUrl } from '../utils/mediaOptimizer';
 
 const cubicEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export const InstagramGrid: React.FC = () => {
   return (
-    <section className="py-20 sm:py-28 bg-[#050505] text-white border-t border-[#D4AF37]/20 select-none">
+    <section className="py-20 sm:py-28 bg-white text-black border-t border-black/10 select-none">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
         <motion.div 
@@ -18,18 +19,18 @@ export const InstagramGrid: React.FC = () => {
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#D4AF37] text-black flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+            <div className="w-10 h-10 rounded-full bg-[#D4AF37] text-black flex items-center justify-center shadow-md">
               <Instagram className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div>
-              <span className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-mono font-bold block">
+              <span className="text-xs uppercase tracking-[0.2em] text-[#B8860B] font-mono font-bold block">
                 JOURNAL ON INSTAGRAM
               </span>
               <a
                 href="https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm"
                 target="_blank"
                 rel="noreferrer"
-                className="font-syne font-bold text-2xl text-white hover:text-[#D4AF37] transition-colors"
+                className="font-syne font-bold text-2xl text-black hover:text-[#B8860B] transition-colors"
               >
                 @fairytale_frames._
               </a>
@@ -40,7 +41,7 @@ export const InstagramGrid: React.FC = () => {
             href="https://www.instagram.com/fairytale_frames._?igsh=bDJhc2ZjNWJ3MGpm"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#D4AF37]/30 text-xs font-bold uppercase tracking-widest text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/20 text-xs font-bold uppercase tracking-widest text-black hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all shadow-sm"
           >
             <span>Follow Our Feed</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -65,13 +66,14 @@ export const InstagramGrid: React.FC = () => {
               href={post.permalink}
               target="_blank"
               rel="noreferrer"
-              className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-[#0A0A0A] border border-[#D4AF37]/20 hover:border-[#D4AF37] shadow-xl hover:shadow-[0_0_20px_rgba(212,175,55,0.25)] transition-all"
+              className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-neutral-100 border border-black/10 hover:border-[#D4AF37] shadow-md hover:shadow-xl transition-all"
             >
               <img
-                src={post.imageUrl}
+                src={getOptimizedImageUrl(post.imageUrl, 600)}
                 alt={post.caption}
-                className="w-full h-full object-cover img-editorial filter brightness-90 group-hover:scale-105 transition-all duration-500 ease-out"
+                className="w-full h-full object-cover img-editorial filter brightness-95 group-hover:scale-105 transition-all duration-500 ease-out"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 sm:p-4 flex flex-col justify-between text-white text-xs">
                 <div className="flex items-center justify-end gap-3 text-white/90">

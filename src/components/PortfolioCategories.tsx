@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PORTFOLIO_ITEMS } from '../data/mockData';
 import { PortfolioItem } from '../types';
+import { getOptimizedImageUrl } from '../utils/mediaOptimizer';
 
 interface PortfolioCategoriesProps {
   onSelectItem: (item: PortfolioItem) => void;
@@ -12,7 +13,7 @@ interface PortfolioCategoriesProps {
 // Sub-component 1: Background Typography "WORK"
 export const WorkBackgroundTitle: React.FC<{ text?: string }> = ({ text = "WORK" }) => (
   <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-hidden z-0">
-    <h1 className="text-[26vw] font-montserrat font-[900] text-white/5 leading-none tracking-tighter uppercase">
+    <h1 className="text-[26vw] font-montserrat font-[900] text-black/[0.04] leading-none tracking-tighter uppercase">
       {text}
     </h1>
   </div>
@@ -26,12 +27,12 @@ export const ProjectProgress: React.FC<{
   onNext: () => void;
   onSelectIndex: (index: number) => void;
 }> = ({ currentIndex, totalProjects, onPrev, onNext, onSelectIndex }) => (
-  <div className="absolute left-1.5 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-between w-9 sm:w-12 h-36 sm:h-48 py-2.5 sm:py-4 px-1 sm:px-2 bg-black/85 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl">
+  <div className="absolute left-1.5 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-between w-9 sm:w-12 h-36 sm:h-48 py-2.5 sm:py-4 px-1 sm:px-2 bg-white/95 backdrop-blur-md rounded-2xl border border-black/10 shadow-lg">
     <button
       onClick={onPrev}
       disabled={currentIndex === 0}
       className={`text-[9px] sm:text-[11px] font-mono font-bold tracking-wider transition-colors cursor-pointer p-1 ${
-        currentIndex === 0 ? 'text-white/20 cursor-not-allowed' : 'text-white hover:text-[#D4AF37]'
+        currentIndex === 0 ? 'text-black/20 cursor-not-allowed' : 'text-black hover:text-[#B8860B]'
       }`}
       title="Previous Project"
     >
@@ -39,7 +40,7 @@ export const ProjectProgress: React.FC<{
     </button>
 
     {/* Vertical Indicator Line with Clickable Dots */}
-    <div className="w-[2px] h-14 sm:h-24 bg-white/20 relative rounded-full flex flex-col items-center justify-between py-1 my-1">
+    <div className="w-[2px] h-14 sm:h-24 bg-black/15 relative rounded-full flex flex-col items-center justify-between py-1 my-1">
       {Array.from({ length: totalProjects }).map((_, idx) => (
         <button
           key={idx}
@@ -48,7 +49,7 @@ export const ProjectProgress: React.FC<{
           className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all cursor-pointer ${
             idx === currentIndex
               ? 'bg-[#D4AF37] scale-125 shadow-[0_0_8px_rgba(212,175,55,0.8)]'
-              : 'bg-white/40 hover:bg-white'
+              : 'bg-black/30 hover:bg-black'
           }`}
         />
       ))}
@@ -58,7 +59,7 @@ export const ProjectProgress: React.FC<{
       onClick={onNext}
       disabled={currentIndex === totalProjects - 1}
       className={`text-[9px] sm:text-[11px] font-mono font-bold tracking-wider transition-colors cursor-pointer p-1 ${
-        currentIndex === totalProjects - 1 ? 'text-white/20 cursor-not-allowed' : 'text-white/80 hover:text-[#D4AF37]'
+        currentIndex === totalProjects - 1 ? 'text-black/20 cursor-not-allowed' : 'text-black/80 hover:text-[#B8860B]'
       }`}
       title="Next Project"
     >
@@ -167,7 +168,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
   return (
     <section 
       id="portfolio" 
-      className="bg-black text-white relative select-none py-16 sm:py-24 min-h-screen flex items-center justify-center overflow-hidden"
+      className="bg-white text-black relative select-none py-16 sm:py-24 min-h-screen flex items-center justify-center overflow-hidden border-t border-black/5"
     >
       {/* Background Typography "WORK" */}
       <WorkBackgroundTitle text="WORK" />
@@ -182,7 +183,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
       />
 
       {/* Centered Slide Card Container */}
-      <div className="relative z-10 w-[82vw] sm:w-[80vw] max-w-[680px] aspect-[4/5] sm:aspect-[16/10] overflow-hidden ml-8 sm:ml-0 rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-white/10 bg-black">
+      <div className="relative z-10 w-[82vw] sm:w-[80vw] max-w-[680px] aspect-[4/5] sm:aspect-[16/10] overflow-hidden ml-8 sm:ml-0 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/10 bg-neutral-100">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={activeItem.id}
@@ -198,9 +199,11 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
           >
             {/* Image */}
             <img
-              src={activeItem.imageUrl}
+              src={getOptimizedImageUrl(activeItem.imageUrl, 1100)}
               alt={activeItem.title}
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              loading="lazy"
+              decoding="async"
             />
             
             <ProjectOverlay />
@@ -224,7 +227,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
             handlePrev();
           }}
           disabled={activeIndex === 0}
-          className={`absolute left-3 top-1/2 -translate-y-1/2 z-40 p-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white transition-all cursor-pointer ${
+          className={`absolute left-3 top-1/2 -translate-y-1/2 z-40 p-2.5 rounded-full bg-white/90 backdrop-blur-md border border-black/10 text-black transition-all cursor-pointer shadow-md ${
             activeIndex > 0 ? 'hover:bg-[#D4AF37] hover:text-black hover:scale-110 active:scale-95' : 'opacity-20 cursor-not-allowed'
           }`}
           title="Previous slide"
@@ -239,7 +242,7 @@ export const WorkSection: React.FC<PortfolioCategoriesProps> = ({ onSelectItem }
             handleNext();
           }}
           disabled={activeIndex === featuredWorks.length - 1}
-          className={`absolute right-3 top-1/2 -translate-y-1/2 z-40 p-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white transition-all cursor-pointer ${
+          className={`absolute right-3 top-1/2 -translate-y-1/2 z-40 p-2.5 rounded-full bg-white/90 backdrop-blur-md border border-black/10 text-black transition-all cursor-pointer shadow-md ${
             activeIndex < featuredWorks.length - 1 ? 'hover:bg-[#D4AF37] hover:text-black hover:scale-110 active:scale-95' : 'opacity-20 cursor-not-allowed'
           }`}
           title="Next slide"

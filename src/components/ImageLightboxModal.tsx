@@ -83,9 +83,9 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
       <div className="absolute inset-0 bg-black/80" onClick={onClose} />
 
       {/* Top Floating Bar */}
-      <div className="absolute top-4 left-4 right-4 z-50 flex items-center justify-between px-3 sm:px-6 py-3 rounded-2xl bg-black/80 backdrop-blur-md border border-white/10 max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 text-white">
-          <h4 className="font-montserrat font-bold text-sm sm:text-lg text-white truncate max-w-[200px] sm:max-w-md">
+      <div className="absolute top-4 left-4 right-4 z-50 flex items-center justify-between px-3 sm:px-6 py-3 rounded-2xl bg-white/90 backdrop-blur-md border border-black/10 max-w-7xl mx-auto shadow-md">
+        <div className="flex items-center gap-3 text-black">
+          <h4 className="font-montserrat font-bold text-sm sm:text-lg text-black truncate max-w-[200px] sm:max-w-md">
             {item.title}
           </h4>
         </div>
@@ -95,7 +95,7 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
           {/* Close Modal Button */}
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white transition-all border border-white/20 cursor-pointer"
+            className="p-2 rounded-full bg-black/5 hover:bg-black hover:text-white text-black transition-all border border-black/10 cursor-pointer"
             aria-label="Close Lightbox"
           >
             <X className="w-5 h-5" />
@@ -104,10 +104,10 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
       </div>
 
       {/* Main Lightbox Modal Window */}
-      <div className="relative z-10 w-full max-w-7xl h-[88vh] sm:h-[85vh] mt-12 bg-[#09090b] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-[0_25px_80px_rgba(0,0,0,0.95)] flex flex-col lg:flex-row">
+      <div className="relative z-10 w-full max-w-7xl h-[88vh] sm:h-[85vh] mt-12 bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 shadow-2xl flex flex-col lg:flex-row">
         
         {/* Left / Main Gallery Display Area */}
-        <div className="lg:w-3/4 bg-black flex flex-col justify-between relative overflow-hidden h-full">
+        <div className="lg:w-3/4 bg-neutral-900 flex flex-col justify-between relative overflow-hidden h-full">
           
           {/* View Mode 1: Single Featured Image View */}
           {viewMode === 'single' ? (
@@ -162,13 +162,13 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
             </div>
           ) : (
             /* View Mode 2: Full Gallery Photo Grid */
-            <div className="flex-1 p-4 sm:p-8 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 p-4 sm:p-8 overflow-y-auto custom-scrollbar bg-white">
               <div className="mb-4 flex items-center justify-between">
-                <h3 className="font-montserrat font-bold text-lg text-white flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-[#D4AF37]" />
+                <h3 className="font-montserrat font-bold text-lg text-black flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-[#B8860B]" />
                   All Photographs in {item.title} ({galleryList.length})
                 </h3>
-                <span className="text-xs font-mono text-white/50">Click any photograph to view full resolution</span>
+                <span className="text-xs font-mono text-black/50">Click any photograph to view full resolution</span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
@@ -182,10 +182,10 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
                         setSelectedImgIdx(index);
                         setViewMode('single');
                       }}
-                      className={`group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all ${
+                      className={`group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all rounded-lg border ${
                         selectedImgIdx === index
-                          ? 'ring-2 ring-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)]'
-                          : 'hover:opacity-90'
+                          ? 'ring-2 ring-[#D4AF37] shadow-md'
+                          : 'border-black/10 hover:opacity-90'
                       }`}
                     >
                       {isVideoUrl(imgUrl) ? (
@@ -206,7 +206,7 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
                           <Play className="w-6 h-6 text-white drop-shadow-md fill-white/80" />
                         </div>
                       )}
-                      <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[10px] font-mono text-white font-bold">
+                      <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[10px] font-mono text-white font-bold rounded">
                         #{index + 1}
                       </div>
                     </motion.div>
@@ -218,7 +218,7 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
 
           {/* Bottom Thumbnail Strip Bar */}
           {galleryList.length > 1 && viewMode === 'single' && (
-            <div className="p-3 bg-[#0d0c0e] border-t border-white/10 flex items-center gap-3 overflow-x-auto custom-scrollbar select-none">
+            <div className="p-3 bg-black/90 border-t border-white/10 flex items-center gap-3 overflow-x-auto custom-scrollbar select-none">
               <div className="flex items-center gap-2.5">
                 {galleryList.map((imgUrl, idx) => {
                   const isVid = (idx === 0 && Boolean(item.videoUrl)) || isVideoUrl(imgUrl);
@@ -226,9 +226,9 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
                     <button
                       key={idx}
                       onClick={() => setSelectedImgIdx(idx)}
-                      className={`relative w-14 h-10 sm:w-16 sm:h-12 overflow-hidden transition-all flex-shrink-0 cursor-pointer ${
+                      className={`relative w-14 h-10 sm:w-16 sm:h-12 overflow-hidden transition-all flex-shrink-0 cursor-pointer rounded ${
                         selectedImgIdx === idx
-                          ? 'ring-2 ring-[#D4AF37] scale-105 shadow-[0_0_12px_rgba(212,175,55,0.5)]'
+                          ? 'ring-2 ring-[#D4AF37] scale-105 shadow-md'
                           : 'opacity-60 hover:opacity-100'
                       }`}
                     >
@@ -252,31 +252,31 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
         </div>
 
         {/* Right Details Panel */}
-        <div className="lg:w-1/4 p-6 sm:p-8 bg-[#0a0a0d] border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-between space-y-6 text-white overflow-y-auto">
+        <div className="lg:w-1/4 p-6 sm:p-8 bg-neutral-50 border-t lg:border-t-0 lg:border-l border-black/10 flex flex-col justify-between space-y-6 text-black overflow-y-auto">
           <div>
-            <h3 className="text-2xl sm:text-3xl font-montserrat font-black uppercase leading-tight mb-2 text-white">
+            <h3 className="text-2xl sm:text-3xl font-montserrat font-black uppercase leading-tight mb-2 text-black">
               {item.title}
             </h3>
 
             {item.clientNames && (
-              <p className="text-sm font-cormorant italic text-[#F4E0A5] mb-4">
+              <p className="text-sm font-cormorant italic text-[#B8860B] mb-4">
                 Couple / Client: {item.clientNames}
               </p>
             )}
 
-            <p className="text-xs font-sans text-white/70 leading-relaxed mb-6 font-light">
+            <p className="text-xs font-sans text-black/75 leading-relaxed mb-6 font-light">
               {item.description}
             </p>
           </div>
 
           {/* Project Switcher & Inquiry CTA */}
-          <div className="pt-4 border-t border-white/10 space-y-3">
+          <div className="pt-4 border-t border-black/10 space-y-3">
             <button
               onClick={() => {
                 onClose();
                 onOpenInquiry();
               }}
-              className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F4E0A5] to-[#AA771C] text-black text-xs font-bold uppercase tracking-[0.2em] transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(212,175,55,0.3)] cursor-pointer"
+              className="w-full py-3.5 rounded-full bg-[#D4AF37] hover:bg-[#B89628] text-black text-xs font-bold uppercase tracking-[0.2em] transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-md cursor-pointer"
             >
               <span>Book / Inquire For Collection</span>
               <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />

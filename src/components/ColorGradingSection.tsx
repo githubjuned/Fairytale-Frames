@@ -46,7 +46,7 @@ export const ColorGradingSection: React.FC = () => {
   };
 
   return (
-    <section id="color-grading" className="py-12 md:py-20 bg-black text-white relative overflow-hidden select-none">
+    <section id="color-grading" className="py-12 md:py-20 bg-white text-black relative overflow-hidden select-none border-t border-black/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Section Heading */}
@@ -57,7 +57,7 @@ export const ColorGradingSection: React.FC = () => {
           transition={{ duration: 0.75, ease: easeCurve }}
           className="mb-8 sm:mb-12 text-center"
         >
-          <h2 className="font-montserrat font-black text-3xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-white">
+          <h2 className="font-montserrat font-black text-3xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-black">
             BEFORE & <span className="font-cormorant italic font-normal text-gold-gradient">AFTER</span>
           </h2>
         </motion.div>
@@ -68,7 +68,7 @@ export const ColorGradingSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.85, ease: easeCurve }}
-          className="max-w-5xl mx-auto"
+          className="max-w-5xl mx-auto rounded-2xl border border-black/10 shadow-2xl overflow-hidden"
         >
           <div
             ref={containerRef}
@@ -76,7 +76,7 @@ export const ColorGradingSection: React.FC = () => {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="relative w-full h-[380px] sm:h-[540px] md:h-[620px] overflow-hidden bg-black cursor-ew-resize touch-none group"
+            className="relative w-full h-[380px] sm:h-[540px] md:h-[620px] overflow-hidden bg-neutral-100 cursor-ew-resize touch-none group rounded-2xl"
           >
             {/* 1. AFTER Image (Full background layer) */}
             <img
@@ -102,13 +102,13 @@ export const ColorGradingSection: React.FC = () => {
 
             {/* Remini-style Floating Badges */}
             <div className="absolute top-5 left-5 pointer-events-none z-20">
-              <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-mono font-bold uppercase tracking-widest border border-white/20 shadow-lg">
+              <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[11px] font-mono font-bold uppercase tracking-widest border border-white/20 shadow-lg">
                 BEFORE
               </span>
             </div>
 
             <div className="absolute top-5 right-5 pointer-events-none z-20">
-              <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/80 backdrop-blur-md text-white text-[11px] font-mono font-bold uppercase tracking-widest border border-emerald-400/30 shadow-lg shadow-emerald-950/40">
+              <span className="px-3.5 py-1.5 rounded-full bg-emerald-600/90 backdrop-blur-md text-white text-[11px] font-mono font-bold uppercase tracking-widest border border-emerald-400/30 shadow-lg">
                 AFTER
               </span>
             </div>

@@ -48,7 +48,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-black text-white relative overflow-hidden border-t border-white/10">
+    <section id="contact" className="py-20 md:py-28 bg-white text-black relative overflow-hidden border-t border-black/10">
       <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* GET IN TOUCH Centered Header */}
@@ -59,10 +59,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
           transition={{ duration: 0.8, ease: easeCurve }}
           className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
         >
-          <h2 className="font-montserrat font-black text-3xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-white mb-4">
+          <h2 className="font-montserrat font-black text-3xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-black mb-4">
             GET IN TOUCH
           </h2>
-          <p className="text-xs sm:text-sm text-white/60 font-sans leading-relaxed">
+          <p className="text-xs sm:text-sm text-black/70 font-sans leading-relaxed">
             We invite you to share your vision with us. Whether planning a grand destination celebration, an intimate editorial portrait session, or bespoke cinematic storytelling, we are here to immortalize your finest moments.
           </p>
         </motion.div>
@@ -73,21 +73,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.85, ease: easeCurve }}
-          className="bg-[#0A0A0A] p-8 sm:p-12 md:p-16 rounded-3xl border border-white/10 shadow-2xl"
+          className="bg-neutral-50 p-8 sm:p-12 md:p-16 rounded-3xl border border-black/10 shadow-xl"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             {/* Left Column: Based In & Follow Us Social Box Grid */}
             <div className="lg:col-span-5 space-y-10">
               <div>
-                <span className="text-xs text-white/50 font-sans block mb-2">Based In</span>
-                <p className="text-2xl sm:text-3xl font-cormorant italic font-normal text-white">
+                <span className="text-xs text-black/60 font-sans block mb-2">Based In</span>
+                <p className="text-2xl sm:text-3xl font-cormorant italic font-normal text-black">
                   Nashik, India
                 </p>
               </div>
 
               <div>
-                <span className="text-xs text-white/50 font-sans block mb-4">Follow Us</span>
+                <span className="text-xs text-black/60 font-sans block mb-4">Follow Us</span>
                 <div className="grid grid-cols-3 gap-3">
                   {socialLinks.map((soc) => (
                     <a
@@ -95,7 +95,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                       href={soc.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="py-2 px-3 sm:px-4 rounded-none border border-white/30 text-center text-xs sm:text-sm font-cormorant italic text-white hover:bg-white hover:text-black hover:border-white transition-all duration-200"
+                      className="py-2 px-3 sm:px-4 rounded-none border border-black/20 text-center text-xs sm:text-sm font-cormorant italic text-black hover:bg-black hover:text-white hover:border-black transition-all duration-200"
                     >
                       {soc.name}
                     </a>
@@ -108,13 +108,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
             <div className="lg:col-span-7">
               {submitted ? (
                 <div className="text-center py-12 space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center border border-emerald-500/40 shadow-lg animate-pulse">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-600 mx-auto flex items-center justify-center border border-emerald-500/40 shadow-md animate-pulse">
                     <CheckCircle className="w-7 h-7" />
                   </div>
-                  <h4 className="text-2xl font-montserrat font-bold uppercase text-white">
+                  <h4 className="text-2xl font-montserrat font-bold uppercase text-black">
                     REDIRECTING TO WHATSAPP
                   </h4>
-                  <p className="text-xs text-white/70 max-w-md mx-auto leading-relaxed">
+                  <p className="text-xs text-black/70 max-w-md mx-auto leading-relaxed">
                     Thank you, {formData.name || 'Friend'}. Your form details have been compiled and sent to WhatsApp.
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -127,7 +127,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                           `*Message:* ${formData.message}`;
                         window.open(`https://wa.me/917709434402?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
                       }}
-                      className="px-6 py-2 bg-[#25D366] text-black font-sans font-bold text-xs uppercase tracking-wider rounded-full hover:bg-[#20bd5a] transition-colors"
+                      className="px-6 py-2 bg-[#25D366] text-white font-sans font-bold text-xs uppercase tracking-wider rounded-full hover:bg-[#20bd5a] transition-colors shadow-sm"
                     >
                       Open WhatsApp Again
                     </button>
@@ -136,7 +136,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                         setSubmitted(false);
                         setFormData({ name: '', email: '', phone: '', message: '' });
                       }}
-                      className="px-6 py-2 border border-white/50 text-xs font-cormorant italic text-white hover:bg-white hover:text-black transition-colors"
+                      className="px-6 py-2 border border-black/30 text-xs font-cormorant italic text-black hover:bg-black hover:text-white transition-colors"
                     >
                       Send Another Message
                     </button>
@@ -151,7 +151,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-transparent border-b border-white/20 pb-3 pt-1 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white transition-colors font-sans"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 pt-1 text-sm text-black placeholder-black/40 focus:outline-none focus:border-black transition-colors font-sans"
                     />
                   </div>
 
@@ -162,7 +162,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                       placeholder="Your Email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-transparent border-b border-white/20 pb-3 pt-1 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white transition-colors font-sans"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 pt-1 text-sm text-black placeholder-black/40 focus:outline-none focus:border-black transition-colors font-sans"
                     />
                   </div>
 
@@ -172,7 +172,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                       placeholder="Your Phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-transparent border-b border-white/20 pb-3 pt-1 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white transition-colors font-sans"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 pt-1 text-sm text-black placeholder-black/40 focus:outline-none focus:border-black transition-colors font-sans"
                     />
                   </div>
 
@@ -183,7 +183,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                       placeholder="Your Message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-transparent border-b border-white/20 pb-3 pt-1 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white transition-colors font-sans resize-none"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 pt-1 text-sm text-black placeholder-black/40 focus:outline-none focus:border-black transition-colors font-sans resize-none"
                     />
                   </div>
 
@@ -191,7 +191,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenWhatsApp }
                     <button
                       type="submit"
                       disabled={loading}
-                      className="border border-white/80 hover:border-white px-8 sm:px-10 py-2.5 text-sm sm:text-base font-cormorant italic text-white hover:bg-white hover:text-black transition-all duration-200 cursor-pointer disabled:opacity-50"
+                      className="border border-black/80 hover:border-black px-8 sm:px-10 py-2.5 text-sm sm:text-base font-cormorant italic text-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer disabled:opacity-50"
                     >
                       {loading ? 'Submitting...' : 'Submit'}
                     </button>

@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { FEATURED_STORIES } from '../data/mockData';
 import { FeaturedStory } from '../types';
 import { BookOpen, MapPin, Calendar, ArrowRight } from 'lucide-react';
+import { getOptimizedImageUrl } from '../utils/mediaOptimizer';
 
 interface FeaturedStoriesProps {
   onOpenStory: (story: FeaturedStory) => void;
@@ -57,9 +58,11 @@ export const FeaturedStories: React.FC<FeaturedStoriesProps> = ({ onOpenStory })
               >
                 <div className="rounded-3xl overflow-hidden bg-[#0A0A0A] shadow-2xl border border-[#D4AF37]/20 hover:border-[#D4AF37] transition-all aspect-[16/10] relative">
                   <img
-                    src={story.coverImage}
+                    src={getOptimizedImageUrl(story.coverImage, 1200)}
                     alt={story.title}
                     className="w-full h-full object-cover img-editorial filter contrast-[1.02]"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent group-hover:opacity-95 transition-opacity p-8 flex flex-col justify-between text-white">
                     <div className="flex justify-between items-center">

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import { getOptimizedImageUrl } from '../utils/mediaOptimizer';
 
 interface HeroSectionProps {
   onOpenInquiry: () => void;
@@ -31,8 +32,8 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
   return (
     <section 
       ref={containerRef}
-      id="hero" 
-      className="relative pt-24 sm:pt-32 pb-4 sm:pb-8 bg-black text-white overflow-hidden"
+      id="capturing-moments" 
+      className="relative pt-16 sm:pt-24 pb-4 sm:pb-8 bg-white text-black overflow-hidden"
     >
       <motion.div 
         style={{ y: shouldReduceMotion ? 0 : contentY, opacity: shouldReduceMotion ? 1 : contentOpacity }}
@@ -43,7 +44,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
             1. HERO HEADLINE WITH SPLIT-TEXT STAGGERED REVEAL
             ========================================================================= */}
         <div className="text-center max-w-6xl mx-auto mb-10 sm:mb-14 select-none">
-          <h1 className="heading-h1 text-white flex flex-col items-center justify-center gap-1 sm:gap-2">
+          <h1 className="heading-h1 text-black flex flex-col items-center justify-center gap-1 sm:gap-2">
             
             {/* Top Line: "CAPTURING" + Highlighted "MOMENTS" */}
             <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 overflow-hidden py-1">
@@ -53,7 +54,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
                   initial={{ opacity: 0, y: 35 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.85, delay: 0.1 + i * 0.1, ease: cubicEase }}
-                  className="inline-block"
+                  className="inline-block text-black"
                 >
                   {word}
                 </motion.span>
@@ -78,7 +79,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
                   initial={{ opacity: 0, y: 35 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.85, delay: 0.42 + i * 0.12, ease: cubicEase }}
-                  className="inline-block text-white"
+                  className="inline-block text-black"
                 >
                   {word}
                 </motion.span>
@@ -98,9 +99,11 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
         >
           <motion.img
             style={{ scale: shouldReduceMotion ? 1 : imageScale, y: shouldReduceMotion ? 0 : imageY }}
-            src="https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC02780_wjnhof.jpg"
+            src={getOptimizedImageUrl("https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC02780_wjnhof.jpg", 1400)}
             alt="Flagship Professional Camera Showcase"
             className="w-full h-auto max-h-[700px] object-cover object-center transition-transform duration-700 ease-out"
+            loading="lazy"
+            decoding="async"
           />
         </motion.div>
 
@@ -121,7 +124,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1, ease: cubicEase }}
-              className="font-cormorant italic font-semibold text-2xl sm:text-6xl lg:text-[72px] text-white tracking-wide leading-none"
+              className="font-cormorant italic font-semibold text-2xl sm:text-6xl lg:text-[72px] text-black tracking-wide leading-none"
             >
               FREEZING
             </motion.span>
@@ -130,7 +133,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: cubicEase }}
-              className="font-montserrat font-black text-2xl sm:text-6xl lg:text-[72px] text-[#D4AF37] tracking-tight leading-none"
+              className="font-montserrat font-black text-2xl sm:text-6xl lg:text-[72px] text-[#B8860B] tracking-tight leading-none"
             >
               MOMENTS
             </motion.span>
@@ -141,14 +144,14 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3, ease: cubicEase }}
-              className="relative inline-flex items-center justify-center w-16 sm:w-28 h-8 sm:h-14 rounded-full overflow-hidden bg-neutral-800 border border-white/20 shadow-lg"
+              className="relative inline-flex items-center justify-center w-16 sm:w-28 h-8 sm:h-14 rounded-full overflow-hidden bg-neutral-100 border border-black/10 shadow-md"
             >
               <img
                 src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=300"
                 alt="Visual Art"
-                className="w-full h-full object-cover filter brightness-90"
+                className="w-full h-full object-cover filter brightness-95"
               />
-              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 bg-black/10" />
               <span className="absolute text-[#D4AF37] font-bold text-sm sm:text-2xl drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]">✦</span>
             </motion.div>
           </div>
@@ -161,7 +164,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4, ease: cubicEase }}
-              className="inline-flex items-center justify-center w-20 sm:w-36 h-8 sm:h-14 rounded-full overflow-hidden bg-neutral-800 border border-white/20 shadow-lg p-0.5 sm:p-1"
+              className="inline-flex items-center justify-center w-20 sm:w-36 h-8 sm:h-14 rounded-full overflow-hidden bg-neutral-100 border border-black/10 shadow-md p-0.5 sm:p-1"
             >
               <img
                 src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&q=80&w=300"
@@ -174,7 +177,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.85, delay: 0.48, ease: cubicEase }}
-              className="font-cormorant italic font-semibold text-2xl sm:text-6xl lg:text-[72px] text-white tracking-wide leading-none"
+              className="font-cormorant italic font-semibold text-2xl sm:text-6xl lg:text-[72px] text-black tracking-wide leading-none"
             >
               TELL STORIES.
             </motion.span>
