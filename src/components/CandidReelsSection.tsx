@@ -21,10 +21,25 @@ const ReelCard: React.FC<ReelCardProps> = ({ film, idx, isMuted, onToggleSound }
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Sync muted property directly on the DOM element for autoplay policy compliance
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = isMuted;
+      video.defaultMuted = true;
+    }
+  }, [isMuted]);
+
   useEffect(() => {
     const el = cardRef.current;
     const video = videoRef.current;
     if (!el || !video) return;
+
+    video.muted = isMuted;
+    video.defaultMuted = true;
+
+    // Immediately attempt playback
+    video.play().catch(() => {});
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -34,15 +49,25 @@ const ReelCard: React.FC<ReelCardProps> = ({ film, idx, isMuted, onToggleSound }
           video.pause();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [isMuted]);
 
   const videoSrc = film.videoUrl ? getOptimizedVideoUrl(film.videoUrl) : undefined;
   const posterSrc = getOptimizedImageUrl(film.thumbnailUrl, 720);
+
+  const handleCardClick = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  };
 
   return (
     <motion.div
@@ -51,18 +76,30 @@ const ReelCard: React.FC<ReelCardProps> = ({ film, idx, isMuted, onToggleSound }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.6, delay: (idx % 4) * 0.06, ease: easeCurve }}
-      className="group relative rounded-none overflow-hidden bg-black border border-black/15 shadow-sm aspect-[9/16] select-none"
+      onClick={handleCardClick}
+      className="group relative rounded-none overflow-hidden bg-black border border-black/15 shadow-sm aspect-[9/16] select-none cursor-pointer"
     >
       {videoSrc ? (
         <video
           ref={videoRef}
           src={videoSrc}
           poster={posterSrc}
+          autoPlay
           loop
           muted={isMuted}
           playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
+          preload="auto"
+          onLoadedData={(e) => {
+            const v = e.currentTarget;
+            v.muted = isMuted;
+            v.play().catch(() => {});
+          }}
+          onCanPlay={(e) => {
+            const v = e.currentTarget;
+            v.muted = isMuted;
+            v.play().catch(() => {});
+          }}
+          className="w-full h-full object-cover pointer-events-none"
         />
       ) : (
         <img

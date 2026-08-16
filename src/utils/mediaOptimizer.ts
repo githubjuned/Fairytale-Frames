@@ -36,13 +36,6 @@ export function getOptimizedImageUrl(url: string, width?: number): string {
 
 export function getOptimizedVideoUrl(url: string): string {
   if (!url) return '';
-
-  if (url.includes('cloudinary.com') && url.includes('/video/upload/')) {
-    if (url.includes('/video/upload/f_auto') || url.includes('/video/upload/q_auto')) {
-      return url;
-    }
-    return url.replace('/video/upload/', '/video/upload/f_auto,q_auto/');
-  }
-
+  // Direct MP4 playback ensures 100% native autoplay compatibility across all browsers
   return url;
 }
