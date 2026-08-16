@@ -51,7 +51,7 @@ export const BestCaptures: React.FC<BestCapturesProps> = ({ onSelectItem }) => {
               transition={{ duration: 0.7, delay: (idx % 6) * 0.06, ease: cubicEase }}
               whileHover={{ scale: 1.02, y: -4 }}
               onClick={() => onSelectItem(item)}
-              className="group relative overflow-hidden bg-neutral-100 rounded-lg sm:rounded-xl border border-black/10 shadow-sm sm:shadow-md transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98] aspect-[4/5]"
+              className="group relative overflow-hidden bg-neutral-100 rounded-none border border-black/10 shadow-sm transition-all duration-300 cursor-pointer touch-manipulation active:scale-[0.98] aspect-[4/5]"
             >
               <img
                 src={getOptimizedImageUrl(item.imageUrl, 750)}
