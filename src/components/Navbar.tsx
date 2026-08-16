@@ -3,8 +3,8 @@ import { motion } from 'motion/react';
 import { Menu, X, ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage?: 'home' | 'services' | 'quote';
-  onNavigate?: (page: 'home' | 'services' | 'quote', sectionId?: string) => void;
+  currentPage?: 'home' | 'services' | 'quote' | 'about';
+  onNavigate?: (page: 'home' | 'services' | 'quote' | 'about', sectionId?: string) => void;
   onOpenInquiry: () => void;
   onOpenWhatsApp: () => void;
   soundEnabled: boolean;
@@ -34,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'WORKS', page: 'home' as const, href: '#portfolio' },
     { name: 'SERVICES', page: 'services' as const, href: '#services' },
     { name: 'GET A CUSTOM QUOTE', page: 'quote' as const, href: '#quote' },
-    { name: 'ABOUT', page: 'home' as const, href: '#about' },
+    { name: 'ABOUT', page: 'about' as const, href: '#about' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
@@ -51,6 +51,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (link.page === 'quote') {
       if (onNavigate) {
         onNavigate('quote');
+      }
+      return;
+    }
+
+    if (link.page === 'about') {
+      if (onNavigate) {
+        onNavigate('about');
       }
       return;
     }

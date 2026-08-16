@@ -7,10 +7,10 @@ import { HeroSection } from './components/HeroSection';
 import { PortfolioCategories } from './components/PortfolioCategories';
 import { ServicesPage } from './components/ServicesPage';
 import { CustomQuotePage } from './components/CustomQuotePage';
+import { AboutPage } from './components/AboutPage';
 import { CandidReelsSection } from './components/CandidReelsSection';
 import { BestCaptures } from './components/BestCaptures';
 import { ColorGradingSection } from './components/ColorGradingSection';
-import { AboutStudio } from './components/AboutStudio';
 import { CinematicFilms } from './components/CinematicFilms';
 import { InstagramGrid } from './components/InstagramGrid';
 import { ContactSection } from './components/ContactSection';
@@ -25,7 +25,7 @@ import { PORTFOLIO_ITEMS } from './data/mockData';
 import { audioEngine } from './utils/audio';
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'services' | 'quote'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'services' | 'quote' | 'about'>('home');
   const [showSplash, setShowSplash] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [lightboxItem, setLightboxItem] = useState<PortfolioItem | null>(null);
@@ -38,9 +38,9 @@ export function App() {
     window.open('https://wa.me/917709434402?text=' + text, '_blank');
   };
 
-  const handleNavigate = (page: 'home' | 'services' | 'quote', sectionId?: string) => {
+  const handleNavigate = (page: 'home' | 'services' | 'quote' | 'about', sectionId?: string) => {
     setCurrentPage(page);
-    if (page === 'services' || page === 'quote') {
+    if (page === 'services' || page === 'quote' || page === 'about') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (sectionId) {
       setTimeout(() => {
@@ -112,8 +112,17 @@ export function App() {
               onOpenWhatsApp={handleDirectWhatsApp}
             />
           </main>
+        ) : currentPage === 'about' ? (
+          /* Dedicated About Page */
+          <main>
+            <AboutPage
+              onBackToHome={() => handleNavigate('home')}
+              onOpenInquiry={() => setInquiryModalOpen(true)}
+              onOpenWhatsApp={handleDirectWhatsApp}
+            />
+          </main>
         ) : (
-          /* Main Homepage Flow (Without Services Section) */
+          /* Main Homepage Flow (Without Services & About Sections) */
           <main>
             {/* Fullscreen Edge-to-Edge Autoplay Wedding Film Hero */}
             <FullscreenHeroVideo
@@ -148,9 +157,6 @@ export function App() {
 
             {/* Before & After Color Grading Comparison */}
             <ColorGradingSection />
-
-            {/* About the Studio & Equipment */}
-            <AboutStudio />
 
             {/* Live Instagram Feed */}
             <InstagramGrid />

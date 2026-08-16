@@ -99,7 +99,7 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
         >
           <motion.img
             style={{ scale: shouldReduceMotion ? 1 : imageScale, y: shouldReduceMotion ? 0 : imageY }}
-            src={getOptimizedImageUrl("https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC02780_wjnhof.jpg", 1400)}
+            src={getOptimizedImageUrl("https://res.cloudinary.com/dyvmqkxok/image/upload/v1786274669/DSC08356_eqdbzt.jpg", 1400)}
             alt="Flagship Professional Camera Showcase"
             className="w-full h-auto max-h-[700px] object-cover object-center transition-transform duration-700 ease-out"
             loading="lazy"
